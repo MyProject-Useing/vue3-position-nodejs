@@ -1,0 +1,110 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:123456@localhost:3306/manage_node"
+}
+
+model tb_common_config {
+  id         Int       @id @default(autoincrement()) @db.UnsignedInt
+  name       String?   @db.VarChar(255)
+  value      String?   @db.VarChar(255)
+  createtime DateTime? @default(now()) @db.DateTime(0)
+  createid   Int?      @db.UnsignedInt
+
+  @@index([name], map: "name")
+}
+
+model tb_role {
+  id           Int            @default(autoincrement()) @db.UnsignedInt
+  createtime   DateTime?      @default(now()) @db.DateTime(0)
+  name         String         @db.VarChar(20)
+  remark       String?        @db.VarChar(255)
+  createid     Int?           @db.UnsignedInt
+  tb_menu_role tb_menu_role[]
+
+  @@id([id, name])
+  @@index([createid], map: "createid")
+  @@index([id], map: "id")
+}
+
+model tb_user {
+  id            Int       @default(autoincrement()) @db.UnsignedInt
+  createtime    DateTime? @default(now()) @db.DateTime(0)
+  photo         String?   @db.VarChar(255)
+  username      String?   @db.VarChar(255)
+  password      String?   @db.VarChar(255)
+  phone         String?   @db.VarChar(18)
+  sign          String?   @db.VarChar(255)
+  gender        Int?      @db.UnsignedInt
+  logintimes    Int?      @db.UnsignedInt
+  account       String    @db.VarChar(18)
+  roleids       String    @db.VarChar(255)
+  lastlogintime DateTime? @db.DateTime(0)
+
+  @@id([id, account])
+  @@index([id], map: "id")
+}
+
+model tb_language {
+  id         Int       @default(autoincrement()) @db.UnsignedInt
+  createtime DateTime? @default(now()) @db.DateTime(0)
+  name       String    @db.VarChar(255)
+  createid   Int?      @db.UnsignedInt
+
+  @@id([id, name])
+}
+
+model tb_means {
+  id         Int       @id @default(autoincrement()) @db.UnsignedInt
+  createtime DateTime? @default(now()) @db.DateTime(0)
+  readtimes  Int       @db.UnsignedInt
+  goodtimes  Int?      @db.UnsignedInt
+  badtimes   Int?      @db.UnsignedInt
+  createid   Int?      @db.UnsignedInt
+}
+
+model tb_menu {
+  id           Int            @id @default(autoincrement()) @db.UnsignedInt
+  createtime   DateTime?      @default(now()) @db.DateTime(0)
+  path         String?        @db.VarChar(255)
+  name         String?        @db.VarChar(255)
+  component    String?        @db.VarChar(255)
+  redirect     String?        @db.VarChar(255)
+  title        String?        @db.VarChar(255)
+  isLink       String?        @db.VarChar(255)
+  isHide       Int?           @db.UnsignedTinyInt
+  isKeepAlive  Int?           @db.UnsignedTinyInt
+  isAffix      Int?           @db.UnsignedTinyInt
+  isIframe     Int?           @db.UnsignedTinyInt
+  roleids      String?        @db.VarChar(255)
+  icon         String?        @db.VarChar(255)
+  pid          Int?           @db.UnsignedInt
+  createid     Int?           @db.UnsignedInt
+  tb_menu_role tb_menu_role[]
+}
+
+model tb_menu_role {
+  id         Int       @id @default(autoincrement()) @db.UnsignedInt
+  createtime DateTime? @default(now()) @db.DateTime(0)
+  roleid     Int?      @db.UnsignedInt
+  menuid     Int?      @db.UnsignedInt
+  tb_menu    tb_menu?  @relation(fields: [menuid], references: [id], onDelete: Cascade, map: "tb_menu_role_ibfk_2")
+  tb_role    tb_role?  @relation(fields: [roleid], references: [id], onDelete: Cascade, map: "tb_menu_role_ibfk_1")
+
+  @@index([menuid], map: "menuid")
+  @@index([roleid], map: "roleid")
+}
+
+model tb_study_sort {
+  id         Int       @id @default(autoincrement()) @db.UnsignedInt
+  createtime DateTime? @default(now()) @db.DateTime(0)
+  tagname    String?   @db.VarChar(255)
+}
+
+model tb_study_types {
+  id         Int       @id @default(autoincrement()) @db.UnsignedInt
+  createtime DateTime? @default(now()) @db.DateTime(0)
+}
