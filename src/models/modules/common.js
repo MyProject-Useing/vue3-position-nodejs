@@ -15,16 +15,10 @@ async function callMethod(reqBody, options, callback) {
     if (typeof callback == "function") {
       callback({ code: 500, message: "无法识别：" + tableName });
     }
-    return;
+    return null;
   }
 
-  // if (type === "findMany") {
-  //   console.log("reqBody", reqBody);
-  // }
   const filterObj = utils.getWhereBase(reqBody);
-  // if (type === "findMany") {
-  //   console.log("filterObj", filterObj);
-  // }
 
   if (filterObj != null) {
     const resData = await prisma[tableName][options.type](filterObj);

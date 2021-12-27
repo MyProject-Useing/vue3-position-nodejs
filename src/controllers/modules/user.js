@@ -5,13 +5,15 @@ const jwt = require("../../utils/jwt.js");
 const { hasToken } = require("../../utils/common");
 const { userDetaultPhone } = require("../../setting");
 
+const tbName = "tb_user";
+
 // 获取用户基础信息
 exports.getUserInfo = async (req, res) => {
   let tokenObj = hasToken(req.headers.authorization);
   if (tokenObj != null) {
     await Common.findUnique(
       {
-        indexName: "tb_user",
+        indexName: tbName,
         conditions: JSON.stringify([{ field: "id", value: tokenObj.id }]),
       },
       (firstUser) => {
@@ -36,7 +38,7 @@ exports.getUserInfo = async (req, res) => {
         ];
         Common.findMany(
           {
-            indexName: "tb_role_module",
+            indexName: "tb_menu_role",
             conditions: JSON.stringify(filterList),
           },
           function (result) {
@@ -47,11 +49,11 @@ exports.getUserInfo = async (req, res) => {
             //对模块进行排序
             Common.findMany(
               {
-                indexName: "tb_module",
-                conditions: JSON.stringify([
-                  { field: "enabledmark", value: 1 },
-                ]),
-                sort: JSON.stringify([{ sortcode: "asc" }]),
+                indexName: "tb_menu",
+                // conditions: JSON.stringify([
+                //   { field: "enabledmark", value: 1 },
+                // ]),
+                sort: JSON.stringify([{ sort: "asc" }]),
               },
               function (menusRes) {
                 if (menusRes.code !== 200 || menusRes.data.length === 0) {
@@ -79,7 +81,7 @@ exports.getUserInfo = async (req, res) => {
 
 // Find a single User with a id
 exports.login = function (req, res) {
-  var tableName = "tb_user";
+  var tableName = tbName;
   var filterList = [
     { field: "account", type: "等于", value: req.body.account },
   ];
@@ -153,7 +155,7 @@ exports.addUser = (req, res) => {
   if (typeof dataList === "object") {
     Common.findMany(
       {
-        indexName: "tb_user",
+        indexName: tbName,
         conditions: JSON.stringify([
           { field: "account", value: dataList.account },
         ]),
@@ -172,14 +174,14 @@ exports.addUser = (req, res) => {
             (ddata) => {
               dataList = { ...dataList, pwd: ddata.data.value };
               Common.create(
-                { indexName: "tb_user", dataList: JSON.stringify(dataList) },
+                { indexName: tbName, dataList: JSON.stringify(dataList) },
                 (result) => res.send(result)
               );
             }
           );
         } else {
           Common.create(
-            { indexName: "tb_user", dataList: JSON.stringify(dataList) },
+            { indexName: tbName, dataList: JSON.stringify(dataList) },
             (result) => res.send(result)
           );
         }

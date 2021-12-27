@@ -24,7 +24,7 @@ exports.uploadimage = function (req, res) {
   const files = req.files;
   let file;
   let filename;
-  let newPath = "public/image/";
+  let newPath = "public/image/means/";
   if (!files || files.length == 0) {
     return res.send({ code: 500, message: "文件不能为空！" });
   }
@@ -35,7 +35,7 @@ exports.uploadimage = function (req, res) {
     if (err) {
       res.send(returnMessage("error", "图片保存失败！"));
     } else {
-      res.send({ code: 200, mgs: "上传成功", data: "image/" + filename });
+      res.send({ code: 200, mgs: "上传成功", data: "image/means/" + filename });
     }
   });
 };
