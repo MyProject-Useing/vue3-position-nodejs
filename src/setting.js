@@ -30,7 +30,7 @@ module.exports = {
    * @type {sting}
    * @description 用户默认头像
   */
-  userDetaultPhone:'/image/userheads/default.png',
+  userDetaultPhoto:'/image/userheads/default.png',
 
   errorCode:500,
 

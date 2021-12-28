@@ -3,7 +3,7 @@ const { GetMenulist, SetEnableMenu } = require("../../utils/menu.js");
 const jwt = require("../../utils/jwt.js");
 
 const { hasToken } = require("../../utils/common");
-const { userDetaultPhone } = require("../../setting");
+const { userDetaultPhoto } = require("../../setting");
 
 const tbName = "tb_user";
 
@@ -19,8 +19,8 @@ exports.getUserInfo = async (req, res) => {
       (firstUser) => {
         let resData = {
           userid: firstUser.data.id,
-          userName: firstUser.data.username,
-          phone: firstUser.data.phone || userDetaultPhone,
+          username: firstUser.data.username,
+          photo: firstUser.data.photo || userDetaultPhoto,
           userMenu: [],
           roleids: firstUser.data.roleids,
         };
@@ -104,7 +104,7 @@ exports.login = function (req, res) {
             id: _data.id,
             username: _data.username,
             roleids: _data.roleids,
-            phone: _data.phone,
+            photo: _data.photo,
           });
           res.send({
             code: 200,
