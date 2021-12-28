@@ -31,7 +31,7 @@ model tb_role {
 }
 
 model tb_user {
-  id            Int       @default(autoincrement()) @db.UnsignedInt
+  id            Int       @id @default(autoincrement()) @db.UnsignedInt
   createtime    DateTime? @default(now()) @db.DateTime(0)
   photo         String?   @db.VarChar(255)
   username      String?   @db.VarChar(255)
@@ -44,7 +44,6 @@ model tb_user {
   roleids       String    @db.VarChar(255)
   lastlogintime DateTime? @db.DateTime(0)
 
-  @@id([id, account])
   @@index([id], map: "id")
 }
 
@@ -83,6 +82,7 @@ model tb_menu {
   icon         String?        @db.VarChar(255)
   pid          Int?           @db.UnsignedInt
   createid     Int?           @db.UnsignedInt
+  sort         Int?           @db.UnsignedInt
   tb_menu_role tb_menu_role[]
 }
 

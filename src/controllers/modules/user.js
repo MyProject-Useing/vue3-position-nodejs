@@ -99,7 +99,7 @@ exports.login = function (req, res) {
       } else {
         var _data = result.data[0];
         var logintimes = _data.logintimes || 0;
-        if (_data.pwd === req.body.password) {
+        if (_data.password === req.body.password) {
           var accessToken = jwt.generateToken({
             id: _data.id,
             username: _data.username,
@@ -115,7 +115,7 @@ exports.login = function (req, res) {
           });
           Common.update({
             indexName: tableName,
-            dataList: JSON.stringify({ logintime: 0 }),
+            dataList: JSON.stringify({ logintimes: 0 }),
             conditions: JSON.stringify([
               { field: "id", type: "等于", value: _data.id },
             ]),
@@ -165,14 +165,14 @@ exports.addUser = (req, res) => {
           return res.send({ code: 500, message: "用户已存在！" });
         }
 
-        if (!dataList.pwd) {
+        if (!dataList.password) {
           Common.findUnique(
             {
               indexName: "tb_common_config",
               conditions: JSON.stringify([{ field: "id", value: 1 }]),
             },
             (ddata) => {
-              dataList = { ...dataList, pwd: ddata.data.value };
+              dataList = { ...dataList, password: ddata.data.value };
               Common.create(
                 { indexName: tbName, dataList: JSON.stringify(dataList) },
                 (result) => res.send(result)
