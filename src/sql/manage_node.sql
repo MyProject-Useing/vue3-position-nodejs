@@ -11,7 +11,7 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 27/12/2021 18:03:18
+ Date: 30/12/2021 18:08:11
 */
 
 SET NAMES utf8mb4;
@@ -29,13 +29,13 @@ CREATE TABLE `tb_common_config`  (
   `createid` int UNSIGNED NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tb_common_config
 -- ----------------------------
 INSERT INTO `tb_common_config` VALUES (1, 'password', '79010e2bba4fcfb1b2bc150b8f17e030', '2021-12-27 17:25:08', NULL);
-INSERT INTO `tb_common_config` VALUES (2, 'logintime', '5', '2021-12-27 17:25:08', NULL);
+INSERT INTO `tb_common_config` VALUES (2, 'logintimes', '5', '2021-12-27 17:25:08', NULL);
 
 -- ----------------------------
 -- Table structure for tb_language
@@ -47,7 +47,7 @@ CREATE TABLE `tb_language`  (
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `createid` int UNSIGNED NULL DEFAULT NULL,
   PRIMARY KEY (`id`, `name`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tb_language
@@ -73,7 +73,7 @@ CREATE TABLE `tb_means`  (
   `badtimes` int UNSIGNED NULL DEFAULT NULL COMMENT '踩次数',
   `createid` int UNSIGNED NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tb_means
@@ -107,6 +107,7 @@ CREATE TABLE `tb_menu`  (
 -- ----------------------------
 -- Records of tb_menu
 -- ----------------------------
+INSERT INTO `tb_menu` VALUES (2, '2021-12-30 10:00:18', '123', '213', '123', NULL, '1111', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 112);
 
 -- ----------------------------
 -- Table structure for tb_menu_role
@@ -156,7 +157,7 @@ CREATE TABLE `tb_study_sort`  (
   `createtime` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   `tagname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tb_study_sort
@@ -170,7 +171,7 @@ CREATE TABLE `tb_study_types`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `createtime` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tb_study_types
@@ -193,7 +194,7 @@ CREATE TABLE `tb_user`  (
   `account` varchar(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '账户名称',
   `roleids` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '角色列表',
   `lastlogintime` datetime NULL DEFAULT NULL COMMENT '最后登录时间',
-  PRIMARY KEY (`id`, `account`) USING BTREE,
+  PRIMARY KEY (`id`) USING BTREE,
   INDEX `id`(`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
