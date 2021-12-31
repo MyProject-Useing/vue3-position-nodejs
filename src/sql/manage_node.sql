@@ -11,7 +11,7 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 31/12/2021 15:57:19
+ Date: 31/12/2021 18:02:22
 */
 
 SET NAMES utf8mb4;
@@ -102,25 +102,25 @@ CREATE TABLE `tb_menu`  (
   `createid` int UNSIGNED NULL DEFAULT NULL COMMENT '创建人',
   `sort` int UNSIGNED NULL DEFAULT 0 COMMENT '排序顺序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_menu
 -- ----------------------------
 INSERT INTO `tb_menu` VALUES (5, '2021-12-31 02:51:43', '/permission', 'permission', 'Layout', NULL, '权限配置', NULL, 0, 1, NULL, 0, NULL, 'users-cog', NULL, NULL, 30);
-INSERT INTO `tb_menu` VALUES (6, '2021-12-31 06:09:33', 'user', 'user', '@/views/personnelManagement/userManagement/index', NULL, '用户管理', NULL, 0, 1, NULL, 0, NULL, 'user-cog', 5, NULL, 10);
-INSERT INTO `tb_menu` VALUES (7, '2021-12-31 06:10:22', 'role', 'role', '@/views/personnelManagement/roleManagement/index', NULL, '角色管理', NULL, 0, 1, NULL, 0, NULL, 'user-shield', 5, NULL, 20);
-INSERT INTO `tb_menu` VALUES (8, '2021-12-31 06:13:41', 'menu', 'menu', '@/views/personnelManagement/menuManagement/index', NULL, '菜单管理', NULL, 0, 1, NULL, 0, NULL, 'dice-six', 5, NULL, 30);
+INSERT INTO `tb_menu` VALUES (6, '2021-12-31 06:09:33', 'user', 'user', 'personnelManagement/userManagement/index', NULL, '用户管理', NULL, 0, 1, NULL, 0, NULL, 'user-cog', 5, NULL, 10);
+INSERT INTO `tb_menu` VALUES (7, '2021-12-31 06:10:22', 'role', 'role', 'personnelManagement/roleManagement/index', NULL, '角色管理', NULL, 0, 1, NULL, 0, NULL, 'user-shield', 5, NULL, 20);
+INSERT INTO `tb_menu` VALUES (8, '2021-12-31 06:13:41', 'menu', 'menu', 'personnelManagement/menuManagement/index', NULL, '菜单管理', NULL, 0, 1, NULL, 0, NULL, 'dice-six', 5, NULL, 30);
 INSERT INTO `tb_menu` VALUES (9, '2021-12-31 06:14:45', '/meet', 'meet', 'Layout', NULL, '资料管理', NULL, 0, 1, NULL, 0, NULL, 'tasks', NULL, NULL, 40);
-INSERT INTO `tb_menu` VALUES (10, '2021-12-31 06:17:19', 'meetlist', 'meetlist', '@/views/vab/meet/index', NULL, '资料列表', NULL, 0, 1, NULL, 0, NULL, 'list', 9, NULL, 10);
-INSERT INTO `tb_menu` VALUES (11, '2021-12-31 06:23:12', 'meetcreate', 'meetcreate', '@/views/vab/meet/components/create', NULL, '创建资料', NULL, 0, 1, NULL, 0, NULL, 'plus', 9, NULL, 20);
-INSERT INTO `tb_menu` VALUES (12, '2021-12-31 06:24:12', 'meetedit', 'meetedit', '@/views/vab/meet/components/edit', NULL, '资料编辑', NULL, 1, 1, NULL, 0, NULL, 'file-signature', 9, NULL, 30);
-INSERT INTO `tb_menu` VALUES (13, '2021-12-31 06:24:49', '@/views/vab/meet/components/details', 'meetdetils', 'meetdetils', NULL, '资料详情', NULL, 1, 1, NULL, 0, NULL, 'money-check', 9, NULL, 40);
+INSERT INTO `tb_menu` VALUES (10, '2021-12-31 06:17:19', 'meetlist', 'meetlist', 'vab/meet/index', NULL, '资料列表', NULL, 0, 1, NULL, 0, NULL, 'list', 9, NULL, 10);
+INSERT INTO `tb_menu` VALUES (11, '2021-12-31 06:23:12', 'meetcreate', 'meetcreate', 'vab/meet/components/create', NULL, '创建资料', NULL, 0, 1, NULL, 0, NULL, 'plus', 9, NULL, 20);
+INSERT INTO `tb_menu` VALUES (12, '2021-12-31 06:24:12', 'meetedit', 'meetedit', 'vab/meet/components/edit', NULL, '资料编辑', NULL, 1, 1, NULL, 0, NULL, 'file-signature', 9, NULL, 30);
+INSERT INTO `tb_menu` VALUES (13, '2021-12-31 06:24:49', 'meetdetils', 'meetdetils', 'vab/meet/components/details', NULL, '资料详情', NULL, 1, 1, NULL, 0, NULL, 'money-check', 9, NULL, 40);
 INSERT INTO `tb_menu` VALUES (14, '2021-12-31 06:26:21', '/personalCenter', 'personalCenter', 'Layout', NULL, '个人中心', NULL, 1, 1, NULL, 0, NULL, 'street-view', NULL, NULL, 80);
-INSERT INTO `tb_menu` VALUES (15, '2021-12-31 06:28:50', 'personalInfo', 'personalInfo', '@/views/personalCenter/index', NULL, '基础信息', NULL, 1, 1, NULL, 0, NULL, 'street-view', 14, NULL, 0);
+INSERT INTO `tb_menu` VALUES (15, '2021-12-31 06:28:50', 'personalInfo', 'personalInfo', 'personalCenter/index', NULL, '基础信息', NULL, 1, 1, NULL, 0, NULL, 'street-view', 14, NULL, 0);
 INSERT INTO `tb_menu` VALUES (16, '2021-12-31 06:30:50', 'material', 'material', 'Layout', NULL, '资料', NULL, 1, 1, NULL, 0, NULL, 'box-open', NULL, NULL, 20);
-INSERT INTO `tb_menu` VALUES (17, '2021-12-31 06:31:50', 'studylist', 'studylist', '@/views/vab/study/index', NULL, '学习资料', NULL, 0, 1, NULL, 0, NULL, 'box-open', 16, NULL, 11);
-INSERT INTO `tb_menu` VALUES (18, '2021-12-31 06:32:20', 'audiolist', 'audiolist', '@/views/vab/audio/index', NULL, '音频资料', NULL, 0, 1, NULL, 0, NULL, 'box-open', 16, NULL, 2);
+INSERT INTO `tb_menu` VALUES (17, '2021-12-31 06:31:50', 'studylist', 'studylist', 'vab/study/index', NULL, '学习资料', NULL, 0, 1, NULL, 0, NULL, 'box-open', 16, NULL, 11);
+INSERT INTO `tb_menu` VALUES (18, '2021-12-31 06:32:20', 'audiolist', 'audiolist', 'vab/audio/index', NULL, '音频资料', NULL, 0, 1, NULL, 0, NULL, 'box-open', 16, NULL, 2);
 
 -- ----------------------------
 -- Table structure for tb_menu_role
@@ -136,11 +136,49 @@ CREATE TABLE `tb_menu_role`  (
   INDEX `menuid`(`menuid`) USING BTREE,
   CONSTRAINT `tb_menu_role_ibfk_1` FOREIGN KEY (`roleid`) REFERENCES `tb_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tb_menu_role_ibfk_2` FOREIGN KEY (`menuid`) REFERENCES `tb_menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 77 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_menu_role
 -- ----------------------------
+INSERT INTO `tb_menu_role` VALUES (6, '2021-12-31 07:59:48', 2, 16);
+INSERT INTO `tb_menu_role` VALUES (7, '2021-12-31 07:59:48', 2, 18);
+INSERT INTO `tb_menu_role` VALUES (8, '2021-12-31 07:59:48', 2, 17);
+INSERT INTO `tb_menu_role` VALUES (9, '2021-12-31 07:59:48', 2, 5);
+INSERT INTO `tb_menu_role` VALUES (10, '2021-12-31 07:59:48', 2, 6);
+INSERT INTO `tb_menu_role` VALUES (11, '2021-12-31 07:59:48', 2, 7);
+INSERT INTO `tb_menu_role` VALUES (12, '2021-12-31 07:59:48', 2, 8);
+INSERT INTO `tb_menu_role` VALUES (13, '2021-12-31 07:59:48', 2, 9);
+INSERT INTO `tb_menu_role` VALUES (14, '2021-12-31 07:59:48', 2, 10);
+INSERT INTO `tb_menu_role` VALUES (15, '2021-12-31 07:59:48', 2, 11);
+INSERT INTO `tb_menu_role` VALUES (16, '2021-12-31 07:59:48', 2, 12);
+INSERT INTO `tb_menu_role` VALUES (17, '2021-12-31 07:59:48', 2, 13);
+INSERT INTO `tb_menu_role` VALUES (18, '2021-12-31 07:59:48', 2, 14);
+INSERT INTO `tb_menu_role` VALUES (19, '2021-12-31 07:59:48', 2, 15);
+INSERT INTO `tb_menu_role` VALUES (20, '2021-12-31 07:59:48', 2, 16);
+INSERT INTO `tb_menu_role` VALUES (21, '2021-12-31 07:59:48', 2, 18);
+INSERT INTO `tb_menu_role` VALUES (22, '2021-12-31 07:59:48', 2, 17);
+INSERT INTO `tb_menu_role` VALUES (23, '2021-12-31 07:59:48', 2, 5);
+INSERT INTO `tb_menu_role` VALUES (24, '2021-12-31 07:59:48', 2, 6);
+INSERT INTO `tb_menu_role` VALUES (25, '2021-12-31 07:59:48', 2, 7);
+INSERT INTO `tb_menu_role` VALUES (26, '2021-12-31 07:59:48', 2, 8);
+INSERT INTO `tb_menu_role` VALUES (27, '2021-12-31 07:59:48', 2, 9);
+INSERT INTO `tb_menu_role` VALUES (28, '2021-12-31 07:59:48', 2, 10);
+INSERT INTO `tb_menu_role` VALUES (29, '2021-12-31 07:59:48', 2, 11);
+INSERT INTO `tb_menu_role` VALUES (30, '2021-12-31 07:59:48', 2, 12);
+INSERT INTO `tb_menu_role` VALUES (31, '2021-12-31 07:59:48', 2, 13);
+INSERT INTO `tb_menu_role` VALUES (32, '2021-12-31 07:59:48', 2, 14);
+INSERT INTO `tb_menu_role` VALUES (33, '2021-12-31 07:59:48', 2, 15);
+INSERT INTO `tb_menu_role` VALUES (56, '2021-12-31 08:08:03', 4, 16);
+INSERT INTO `tb_menu_role` VALUES (57, '2021-12-31 08:08:03', 4, 18);
+INSERT INTO `tb_menu_role` VALUES (58, '2021-12-31 08:08:03', 4, 17);
+INSERT INTO `tb_menu_role` VALUES (59, '2021-12-31 08:08:03', 4, 9);
+INSERT INTO `tb_menu_role` VALUES (60, '2021-12-31 08:08:03', 4, 10);
+INSERT INTO `tb_menu_role` VALUES (61, '2021-12-31 08:08:03', 4, 11);
+INSERT INTO `tb_menu_role` VALUES (62, '2021-12-31 08:08:03', 4, 12);
+INSERT INTO `tb_menu_role` VALUES (63, '2021-12-31 08:08:03', 4, 13);
+INSERT INTO `tb_menu_role` VALUES (64, '2021-12-31 08:08:03', 4, 14);
+INSERT INTO `tb_menu_role` VALUES (65, '2021-12-31 08:08:03', 4, 15);
 
 -- ----------------------------
 -- Table structure for tb_role
@@ -155,12 +193,13 @@ CREATE TABLE `tb_role`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `createid`(`createid`) USING BTREE,
   INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_role
 -- ----------------------------
 INSERT INTO `tb_role` VALUES (2, '2021-12-31 07:51:57', '管理员', NULL, NULL);
+INSERT INTO `tb_role` VALUES (4, '2021-12-31 08:08:03', '普通用户', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for tb_study_sort
@@ -210,11 +249,12 @@ CREATE TABLE `tb_user`  (
   `lastlogintime` datetime NULL DEFAULT NULL COMMENT '最后登录时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
-INSERT INTO `tb_user` VALUES (1, '2021-12-20 14:59:16', '/image/userheads/labixiaoxin.png', '超级管理员', '79010e2bba4fcfb1b2bc150b8f17e030', NULL, '建议唯一账户，拥有系统最高权限。', 1, 0, 'admin', '', NULL);
+INSERT INTO `tb_user` VALUES (1, '2021-12-20 14:59:16', '/image/userheads/labixiaoxin.png', '超级管理员', '79010e2bba4fcfb1b2bc150b8f17e030', NULL, '建议唯一账户，拥有系统最高权限。', 1, 0, 'admin', '2', NULL);
+INSERT INTO `tb_user` VALUES (2, '2021-12-31 08:21:40', NULL, '2222', '79010e2bba4fcfb1b2bc150b8f17e030', NULL, NULL, NULL, NULL, 'danhua', '2,4', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
