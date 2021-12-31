@@ -11,7 +11,7 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 30/12/2021 18:08:11
+ Date: 31/12/2021 15:57:19
 */
 
 SET NAMES utf8mb4;
@@ -91,23 +91,36 @@ CREATE TABLE `tb_menu`  (
   `component` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '模板路径',
   `redirect` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '重定向路径',
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '页面名称',
-  `isLink` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '跳转到指定路径',
-  `isHide` tinyint UNSIGNED NULL DEFAULT NULL COMMENT '导航栏是否展示',
-  `isKeepAlive` tinyint UNSIGNED NULL DEFAULT NULL COMMENT '保持活跃',
+  `link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '外链路径',
+  `isHide` tinyint UNSIGNED NULL DEFAULT 0 COMMENT '导航栏是否展示',
+  `isKeepAlive` tinyint UNSIGNED NULL DEFAULT 1 COMMENT '保持活跃',
   `isAffix` tinyint UNSIGNED NULL DEFAULT NULL,
-  `isIframe` tinyint UNSIGNED NULL DEFAULT NULL COMMENT '是否内嵌',
+  `isIframe` tinyint UNSIGNED NULL DEFAULT 0 COMMENT '是否内嵌',
   `roleids` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '角色列表',
   `icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图标class名称',
   `pid` int UNSIGNED NULL DEFAULT NULL COMMENT '父菜单id',
   `createid` int UNSIGNED NULL DEFAULT NULL COMMENT '创建人',
-  `sort` int UNSIGNED NULL DEFAULT NULL COMMENT '排序顺序',
+  `sort` int UNSIGNED NULL DEFAULT 0 COMMENT '排序顺序',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_menu
 -- ----------------------------
-INSERT INTO `tb_menu` VALUES (2, '2021-12-30 10:00:18', '123', '213', '123', NULL, '1111', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 112);
+INSERT INTO `tb_menu` VALUES (5, '2021-12-31 02:51:43', '/permission', 'permission', 'Layout', NULL, '权限配置', NULL, 0, 1, NULL, 0, NULL, 'users-cog', NULL, NULL, 30);
+INSERT INTO `tb_menu` VALUES (6, '2021-12-31 06:09:33', 'user', 'user', '@/views/personnelManagement/userManagement/index', NULL, '用户管理', NULL, 0, 1, NULL, 0, NULL, 'user-cog', 5, NULL, 10);
+INSERT INTO `tb_menu` VALUES (7, '2021-12-31 06:10:22', 'role', 'role', '@/views/personnelManagement/roleManagement/index', NULL, '角色管理', NULL, 0, 1, NULL, 0, NULL, 'user-shield', 5, NULL, 20);
+INSERT INTO `tb_menu` VALUES (8, '2021-12-31 06:13:41', 'menu', 'menu', '@/views/personnelManagement/menuManagement/index', NULL, '菜单管理', NULL, 0, 1, NULL, 0, NULL, 'dice-six', 5, NULL, 30);
+INSERT INTO `tb_menu` VALUES (9, '2021-12-31 06:14:45', '/meet', 'meet', 'Layout', NULL, '资料管理', NULL, 0, 1, NULL, 0, NULL, 'tasks', NULL, NULL, 40);
+INSERT INTO `tb_menu` VALUES (10, '2021-12-31 06:17:19', 'meetlist', 'meetlist', '@/views/vab/meet/index', NULL, '资料列表', NULL, 0, 1, NULL, 0, NULL, 'list', 9, NULL, 10);
+INSERT INTO `tb_menu` VALUES (11, '2021-12-31 06:23:12', 'meetcreate', 'meetcreate', '@/views/vab/meet/components/create', NULL, '创建资料', NULL, 0, 1, NULL, 0, NULL, 'plus', 9, NULL, 20);
+INSERT INTO `tb_menu` VALUES (12, '2021-12-31 06:24:12', 'meetedit', 'meetedit', '@/views/vab/meet/components/edit', NULL, '资料编辑', NULL, 1, 1, NULL, 0, NULL, 'file-signature', 9, NULL, 30);
+INSERT INTO `tb_menu` VALUES (13, '2021-12-31 06:24:49', '@/views/vab/meet/components/details', 'meetdetils', 'meetdetils', NULL, '资料详情', NULL, 1, 1, NULL, 0, NULL, 'money-check', 9, NULL, 40);
+INSERT INTO `tb_menu` VALUES (14, '2021-12-31 06:26:21', '/personalCenter', 'personalCenter', 'Layout', NULL, '个人中心', NULL, 1, 1, NULL, 0, NULL, 'street-view', NULL, NULL, 80);
+INSERT INTO `tb_menu` VALUES (15, '2021-12-31 06:28:50', 'personalInfo', 'personalInfo', '@/views/personalCenter/index', NULL, '基础信息', NULL, 1, 1, NULL, 0, NULL, 'street-view', 14, NULL, 0);
+INSERT INTO `tb_menu` VALUES (16, '2021-12-31 06:30:50', 'material', 'material', 'Layout', NULL, '资料', NULL, 1, 1, NULL, 0, NULL, 'box-open', NULL, NULL, 20);
+INSERT INTO `tb_menu` VALUES (17, '2021-12-31 06:31:50', 'studylist', 'studylist', '@/views/vab/study/index', NULL, '学习资料', NULL, 0, 1, NULL, 0, NULL, 'box-open', 16, NULL, 11);
+INSERT INTO `tb_menu` VALUES (18, '2021-12-31 06:32:20', 'audiolist', 'audiolist', '@/views/vab/audio/index', NULL, '音频资料', NULL, 0, 1, NULL, 0, NULL, 'box-open', 16, NULL, 2);
 
 -- ----------------------------
 -- Table structure for tb_menu_role
@@ -139,7 +152,7 @@ CREATE TABLE `tb_role`  (
   `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '角色名称',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   `createid` int UNSIGNED NULL DEFAULT NULL,
-  PRIMARY KEY (`id`, `name`) USING BTREE,
+  PRIMARY KEY (`id`) USING BTREE,
   INDEX `createid`(`createid`) USING BTREE,
   INDEX `id`(`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
@@ -147,6 +160,7 @@ CREATE TABLE `tb_role`  (
 -- ----------------------------
 -- Records of tb_role
 -- ----------------------------
+INSERT INTO `tb_role` VALUES (2, '2021-12-31 07:51:57', '管理员', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for tb_study_sort

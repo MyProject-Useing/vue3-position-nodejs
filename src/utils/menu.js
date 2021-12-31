@@ -55,7 +55,7 @@ function GetMenuChild(id, allList) {
 // / <param name="muen"></param>
 // / <param name="topicList"></param>
 function SetEnableMenu(muens, roleList) {
-  var hasRole = roleList.filter(d => d.moduleid === muens.id)
+  var hasRole = roleList.filter(d => d.menuid === muens.id)
   if (hasRole != null && hasRole.length > 0) {
     muens.enabledmark = 1
     if (muens.children != null && muens.children.length > 0) {

@@ -170,6 +170,21 @@ function getWhereBase(reqBody) {
     }
   }
 
+  // 设置upsert数据
+  if (reqBody.upsertData && reqBody.upsertData.length > 0) {
+    console.log("upsertData", reqBody.upsertData);
+    const upsertData = JSON.parse(reqBody.upsertData.trim());
+    if (typeof upsertData === "object") {
+      filterObj = {
+        ...filterObj,
+        ...upsertData,
+      };
+      console.log("filterObj", filterObj);
+    } else {
+      return null;
+    }
+  }
+
   // 是否分页查询
   //skip 指定应跳过列表中返回的对象的数量。
   //take 指定在列表中应该返回多少个对象（从列表的开头（正值）或结尾（负值）获取，或者从 cursor 位置（如果使用）。

@@ -18,14 +18,13 @@ model tb_common_config {
 }
 
 model tb_role {
-  id           Int            @default(autoincrement()) @db.UnsignedInt
+  id           Int            @id @default(autoincrement()) @db.UnsignedInt
   createtime   DateTime?      @default(now()) @db.DateTime(0)
   name         String         @db.VarChar(20)
   remark       String?        @db.VarChar(255)
   createid     Int?           @db.UnsignedInt
   tb_menu_role tb_menu_role[]
 
-  @@id([id, name])
   @@index([createid], map: "createid")
   @@index([id], map: "id")
 }
@@ -73,16 +72,16 @@ model tb_menu {
   component    String?        @db.VarChar(255)
   redirect     String?        @db.VarChar(255)
   title        String?        @db.VarChar(255)
-  isLink       String?        @db.VarChar(255)
-  isHide       Int?           @db.UnsignedTinyInt
-  isKeepAlive  Int?           @db.UnsignedTinyInt
+  link         String?        @db.VarChar(255)
+  isHide       Int?           @default(0) @db.UnsignedTinyInt
+  isKeepAlive  Int?           @default(1) @db.UnsignedTinyInt
   isAffix      Int?           @db.UnsignedTinyInt
-  isIframe     Int?           @db.UnsignedTinyInt
+  isIframe     Int?           @default(0) @db.UnsignedTinyInt
   roleids      String?        @db.VarChar(255)
   icon         String?        @db.VarChar(255)
   pid          Int?           @db.UnsignedInt
   createid     Int?           @db.UnsignedInt
-  sort         Int?           @db.UnsignedInt
+  sort         Int?           @default(0) @db.UnsignedInt
   tb_menu_role tb_menu_role[]
 }
 
