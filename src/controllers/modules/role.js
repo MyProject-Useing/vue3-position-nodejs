@@ -10,31 +10,6 @@ exports.addRole = function (req, res) {
   let reqData = JSON.parse(req.body.dataList);
   let { remark, name, modules } = reqData;
 
-  // Common.upsert(
-  //   {
-  //     indexName: indexName,
-  //     // dataList: JSON.stringify({ remark, name }),
-  //     conditions: JSON.stringify([{ field: "name", value: name }]),
-  //     upsertData: JSON.stringify({
-  //       update: {
-  //         remark,
-  //       },
-  //       create: {
-  //         remark,
-  //         name,
-  //       },
-  //     }),
-  //   },
-  //   function (response) {
-  //     console.log('response',response)
-  //     if (!response.data || response.code !== 200) {
-  //       res.send({ code: 500, message: "新增失败" });
-  //     } else {
-  //       addRoleModel(response.data.id, modules, (rr) => res.send(rr));
-  //     }
-  //   }
-  // );
-  
   Common.create(
     {
       indexName: indexName,
@@ -106,8 +81,9 @@ function deleteRoleModel(roleid, callbak) {
             callbak(ress);
           }
         );
+      } else {
+        callbak();
       }
-      callbak();
     }
   );
 }
@@ -118,7 +94,7 @@ function addRoleModel(roleid, modules, callback) {
   if (modules && modules.length > 0) {
     let mList = modules.split(",");
     mList.forEach((element) => {
-      dataList.push({ roleid: roleid, menuid: element });
+      dataList.push({ roleid: roleid, menuid: parseInt(element) });
     });
     Common.createMany(
       {
