@@ -1,8 +1,8 @@
 const { Common } = require("../../models/index.js");
-const { GetMenulist, SetEnableMenu } = require("../../utils/menu.js");
+// const { GetMenulist, SetEnableMenu } = require("../../utils/menu.js");
 const jwt = require("../../utils/jwt.js");
 
-const { hasToken } = require("../../utils/common");
+const { hasToken, returnMessage } = require("../../utils/common");
 const { userDetaultPhoto } = require("../../setting");
 
 const tbName = "tb_user";
@@ -21,59 +21,60 @@ exports.getUserInfo = async (req, res) => {
           userid: firstUser.data.id,
           username: firstUser.data.username,
           photo: firstUser.data.photo || userDetaultPhoto,
-          userMenu: [],
           roleids: firstUser.data.roleids,
         };
 
-        if (!resData.roleids || resData.roleids.length === 0) {
-          return errSend(res, resData);
-        }
+        res.send({
+          code: 200,
+          message: "验证成功！",
+          data: resData,
+        });
 
-        const filterList = [
-          {
-            field: "roleid",
-            value: resData.roleids.split(","),
-            type: "内部匹配",
-          },
-        ];
-        Common.findMany(
-          {
-            indexName: "tb_menu_role",
-            conditions: JSON.stringify(filterList),
-          },
-          function (result) {
-            if (result.code !== 200 || result.data.length === 0) {
-              return errSend(res, resData);
-            }
+        // const filterList = [
+        //   {
+        //     field: "roleid",
+        //     value: resData.roleids.split(","),
+        //     type: "内部匹配",
+        //   },
+        // ];
+        // Common.findMany(
+        //   {
+        //     indexName: "tb_menu_role",
+        //     conditions: JSON.stringify(filterList),
+        //   },
+        //   function (result) {
+        //     if (result.code !== 200 || result.data.length === 0) {
+        //       return errSend(res, resData);
+        //     }
 
-            //对模块进行排序
-            Common.findMany(
-              {
-                indexName: "tb_menu",
-                // conditions: JSON.stringify([
-                //   { field: "enabledmark", value: 1 },
-                // ]),
-                sort: JSON.stringify([{ sort: "asc" }]),
-              },
-              function (menusRes) {
-                if (menusRes.code !== 200 || menusRes.data.length === 0) {
-                  return errSend(res, resData);
-                }
+        //     //对模块进行排序
+        //     Common.findMany(
+        //       {
+        //         indexName: "tb_menu",
+        //         // conditions: JSON.stringify([
+        //         //   { field: "enabledmark", value: 1 },
+        //         // ]),
+        //         sort: JSON.stringify([{ sort: "asc" }]),
+        //       },
+        //       function (menusRes) {
+        //         if (menusRes.code !== 200 || menusRes.data.length === 0) {
+        //           return errSend(res, resData);
+        //         }
 
-                let menuList = GetMenulist(menusRes.data);
-                menuList.forEach((item) => SetEnableMenu(item, result.data));
-                res.send({
-                  code: 200,
-                  message: "验证成功！",
-                  data: {
-                    ...resData,
-                    userMenu: menuList,
-                  },
-                });
-              }
-            );
-          }
-        );
+        //         let menuList = GetMenulist(menusRes.data);
+        //         menuList.forEach((item) => SetEnableMenu(item, result.data));
+        //         res.send({
+        //           code: 200,
+        //           message: "验证成功！",
+        //           data: {
+        //             ...resData,
+        //             userMenu: menuList,
+        //           },
+        //         });
+        //       }
+        //     );
+        //   }
+        // );
       }
     );
   }
@@ -190,6 +191,78 @@ exports.addUser = (req, res) => {
   }
 };
 
+// 通过角色id获取菜单
+exports.getMenuByRoleid = function (req, res) {
+  let tokenObj = hasToken(req.headers.authorization);
+  let rids = req.body.roleids;
+  let roleids = rids ? rids.split(",").map(Number) : [];
+  if (tokenObj == null) {
+    return res.send(returnMessage("timeout", "用户已超时，请重新登录"));
+  }
+  if (!roleids || roleids.length === 0) {
+    return res.send({
+      code: 200,
+      message: "查询成功！",
+      data: [],
+    });
+  }
+
+  const filterList = [
+    {
+      field: "roleid",
+      value: roleids,
+      type: "内部匹配",
+    },
+  ];
+
+  Common.findMany(
+    {
+      indexName: "tb_menu_role",
+      conditions: JSON.stringify(filterList),
+      select: JSON.stringify({
+        menuid: true,
+      }),
+    },
+    function (result) {
+      if (result.code !== 200 || result.data.length === 0) {
+        return res.send({
+          code: 200,
+          message: "查询成功！",
+          data: [],
+        });
+      }
+      let menuids = [];
+      result.data.forEach((item) => {
+        menuids.push(item.menuid);
+      });
+      //对模块进行排序
+      Common.findMany(
+        {
+          indexName: "tb_menu",
+          conditions: JSON.stringify([
+            { field: "id", type: "内部匹配", value: menuids },
+          ]),
+          sort: JSON.stringify([{ sort: "asc" }, { pid: "asc" }]),
+        },
+        function (menusRes) {
+          if (menusRes.code !== 200 || menusRes.data.length === 0) {
+            return res.send({
+              code: 200,
+              message: "查询成功！",
+              data: [],
+            });
+          }
+          return res.send({
+            code: 200,
+            message: "查询成功！",
+            data: menusRes.data,
+          });
+        }
+      );
+    }
+  );
+};
+
 /**
  * 新增数据
  * @param {请求} req
@@ -220,7 +293,7 @@ exports.loginOut = function (req, res) {
  * @param {响应*} res
  */
 exports.reloadUserPwd = function (req, res) {
-  res.send({ code: 200 });
+  res.send({ code: 200, message: "重置成功" });
   // let dataList = JSON.parse(req.body.dataList)
   // if (typeof dataList === 'object') {
   //   Common.update(
@@ -234,10 +307,10 @@ exports.reloadUserPwd = function (req, res) {
   // }
 };
 
-function errSend(res, resData) {
-  res.send({
-    code: 200,
-    message: "未能查询到当前用户权限",
-    data: resData,
-  });
-}
+// function errSend(res, resData) {
+//   res.send({
+//     code: 200,
+//     message: "未能查询到当前用户权限",
+//     data: resData,
+//   });
+// }
