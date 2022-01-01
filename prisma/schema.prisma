@@ -40,7 +40,7 @@ model tb_user {
   gender        Int?      @db.UnsignedInt
   logintimes    Int?      @db.UnsignedInt
   account       String    @db.VarChar(18)
-  roleids       String    @db.VarChar(255)
+  roleids       String?   @db.VarChar(255)
   lastlogintime DateTime? @db.DateTime(0)
 
   @@index([id], map: "id")
