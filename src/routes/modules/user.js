@@ -7,5 +7,5 @@ module.exports = function (app) {
   app.post("/api/user/updateDefaultPwd", User.updateDefaultPwd);
   app.post("/api/user/getMenuByRoleid", User.getMenuByRoleid);
   app.post("/api/user/logout", User.loginOut);
-  app.post("/api/user/resetPwd ", User.reloadUserPwd);
+  app.post("/api/user/resetPwd", User.reloadUserPwd);
 };
