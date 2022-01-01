@@ -30,29 +30,33 @@ model tb_role {
 }
 
 model tb_user {
-  id            Int       @id @default(autoincrement()) @db.UnsignedInt
-  createtime    DateTime? @default(now()) @db.DateTime(0)
-  photo         String?   @db.VarChar(255)
-  username      String?   @db.VarChar(255)
-  password      String?   @db.VarChar(255)
-  phone         String?   @db.VarChar(18)
-  sign          String?   @db.VarChar(255)
-  gender        Int?      @db.UnsignedInt
-  logintimes    Int?      @db.UnsignedInt
-  account       String    @db.VarChar(18)
-  roleids       String?   @db.VarChar(255)
-  lastlogintime DateTime? @db.DateTime(0)
+  id                 Int                  @id @default(autoincrement()) @db.UnsignedInt
+  createtime         DateTime?            @default(now()) @db.DateTime(0)
+  photo              String?              @db.VarChar(255)
+  username           String?              @db.VarChar(255)
+  password           String?              @db.VarChar(255)
+  phone              String?              @db.VarChar(18)
+  sign               String?              @db.VarChar(255)
+  gender             Int?                 @db.UnsignedInt
+  logintimes         Int?                 @db.UnsignedInt
+  account            String               @db.VarChar(18)
+  roleids            String?              @db.VarChar(255)
+  lastlogintime      DateTime?            @db.DateTime(0)
+  tb_article         tb_article[]
+  tb_article_message tb_article_message[]
 
   @@index([id], map: "id")
 }
 
 model tb_language {
-  id         Int       @default(autoincrement()) @db.UnsignedInt
-  createtime DateTime? @default(now()) @db.DateTime(0)
-  name       String    @db.VarChar(255)
-  createid   Int?      @db.UnsignedInt
+  id         Int          @default(autoincrement()) @db.UnsignedInt
+  createtime DateTime?    @default(now()) @db.DateTime(0)
+  name       String       @db.VarChar(255)
+  createid   Int?         @db.UnsignedInt
+  tb_article tb_article[]
 
   @@id([id, name])
+  @@index([id], map: "id")
 }
 
 model tb_means {
@@ -106,4 +110,55 @@ model tb_study_sort {
 model tb_study_types {
   id         Int       @id @default(autoincrement()) @db.UnsignedInt
   createtime DateTime? @default(now()) @db.DateTime(0)
+}
+
+model tb_article {
+  id                 Int                  @id @default(autoincrement()) @db.UnsignedInt
+  createtime         DateTime?            @default(now()) @db.DateTime(0)
+  createid           Int?                 @db.UnsignedInt
+  content            String?              @db.Text
+  status             Int?                 @default(1) @db.UnsignedInt
+  hasmessage         BigInt?              @default(1) @db.UnsignedBigInt
+  title              String?              @db.VarChar(255)
+  typeid             Int?                 @default(1) @db.UnsignedInt
+  readtimes          Int?                 @default(0) @db.UnsignedInt
+  goodtimes          Int?                 @default(0) @db.UnsignedInt
+  badtimes           Int?                 @default(0) @db.UnsignedInt
+  importance         Int?                 @default(1) @db.UnsignedInt
+  languageid         Int?                 @default(1) @db.UnsignedInt
+  tb_user            tb_user?             @relation(fields: [createid], references: [id], onDelete: Cascade, map: "tb_article_ibfk_1")
+  tb_language        tb_language?         @relation(fields: [languageid], references: [id], onDelete: Cascade, map: "tb_article_ibfk_2")
+  tb_article_type    tb_article_type?     @relation(fields: [typeid], references: [id], onDelete: Cascade, map: "tb_article_ibfk_3")
+  tb_article_message tb_article_message[]
+
+  @@index([createid], map: "createid")
+  @@index([languageid], map: "languageid")
+  @@index([typeid], map: "typeid")
+}
+
+model tb_article_message {
+  id                       Int                  @id @default(autoincrement()) @db.UnsignedInt
+  createtime               DateTime?            @default(now()) @db.DateTime(0)
+  artid                    Int?                 @db.UnsignedInt
+  content                  String?              @db.Text
+  createid                 Int?                 @db.UnsignedInt
+  pid                      Int?                 @db.UnsignedInt
+  tb_article               tb_article?          @relation(fields: [artid], references: [id], onDelete: Cascade, map: "tb_article_message_ibfk_1")
+  tb_user                  tb_user?             @relation(fields: [createid], references: [id], onUpdate: SetNull, map: "tb_article_message_ibfk_2")
+  tb_article_message       tb_article_message?  @relation("tb_article_messageTotb_article_message_pid", fields: [pid], references: [id], onUpdate: SetNull, map: "tb_article_message_ibfk_3")
+  other_tb_article_message tb_article_message[] @relation("tb_article_messageTotb_article_message_pid")
+
+  @@index([artid], map: "artid")
+  @@index([createid], map: "createid")
+  @@index([pid], map: "pid")
+}
+
+model tb_article_type {
+  id         Int          @id @default(autoincrement()) @db.UnsignedInt
+  createtime DateTime?    @default(now()) @db.DateTime(0)
+  label      String       @db.VarChar(255)
+  createid   Int?         @db.UnsignedInt
+  tb_article tb_article[]
+
+  @@index([id], map: "id")
 }

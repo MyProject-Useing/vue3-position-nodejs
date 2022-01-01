@@ -11,11 +11,102 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 01/01/2022 21:46:26
+ Date: 01/01/2022 22:29:17
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for tb_article
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_article`;
+CREATE TABLE `tb_article`  (
+  `id` int(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `createtime` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `createid` int(0) UNSIGNED NULL DEFAULT NULL,
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '内容',
+  `status` int(0) UNSIGNED NULL DEFAULT 1 COMMENT '文章状态（1：已发布 2：待发布）',
+  `hasmessage` bigint(0) UNSIGNED NULL DEFAULT 1 COMMENT '是否允许评论（1：允许 0：禁止）',
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '标题',
+  `type` int(0) UNSIGNED NULL DEFAULT 1 COMMENT '文章类型',
+  `readtimes` int(0) UNSIGNED NULL DEFAULT 0 COMMENT '阅读次数',
+  `goodtimes` int(0) UNSIGNED NULL DEFAULT 0 COMMENT '点赞次数',
+  `badtimes` int(0) UNSIGNED NULL DEFAULT 0 COMMENT '踩次数',
+  `importance` int(0) UNSIGNED NULL DEFAULT 1 COMMENT '重要等级（1：普通）',
+  `languageid` int(0) UNSIGNED NULL DEFAULT 1 COMMENT '语言类型',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `createid`(`createid`) USING BTREE,
+  INDEX `languageid`(`languageid`) USING BTREE,
+  CONSTRAINT `tb_article_ibfk_1` FOREIGN KEY (`createid`) REFERENCES `tb_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tb_article_ibfk_2` FOREIGN KEY (`languageid`) REFERENCES `tb_language` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_article
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tb_article_message
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_article_message`;
+CREATE TABLE `tb_article_message`  (
+  `id` int(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `createtime` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `artid` int(0) UNSIGNED NULL DEFAULT NULL COMMENT '文章id\r\n',
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `createid` int(0) UNSIGNED NULL DEFAULT NULL,
+  `pid` int(0) UNSIGNED NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `artid`(`artid`) USING BTREE,
+  INDEX `createid`(`createid`) USING BTREE,
+  INDEX `pid`(`pid`) USING BTREE,
+  CONSTRAINT `tb_article_message_ibfk_1` FOREIGN KEY (`artid`) REFERENCES `tb_article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tb_article_message_ibfk_2` FOREIGN KEY (`createid`) REFERENCES `tb_user` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  CONSTRAINT `tb_article_message_ibfk_3` FOREIGN KEY (`pid`) REFERENCES `tb_article_message` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
+) ENGINE = InnoDB AUTO_INCREMENT = 77 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_article_message
+-- ----------------------------
+INSERT INTO `tb_article_message` VALUES (6, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (7, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (8, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (9, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (10, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (11, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (12, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (13, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (14, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (15, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (16, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (17, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (18, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (19, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (20, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (21, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (22, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (23, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (24, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (25, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (26, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (27, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (28, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (29, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (30, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (31, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (32, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (33, '2021-12-31 07:59:48', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (56, '2021-12-31 08:08:03', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (57, '2021-12-31 08:08:03', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (58, '2021-12-31 08:08:03', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (59, '2021-12-31 08:08:03', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (60, '2021-12-31 08:08:03', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (61, '2021-12-31 08:08:03', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (62, '2021-12-31 08:08:03', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (63, '2021-12-31 08:08:03', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (64, '2021-12-31 08:08:03', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_article_message` VALUES (65, '2021-12-31 08:08:03', NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for tb_common_config
@@ -46,7 +137,8 @@ CREATE TABLE `tb_language`  (
   `createtime` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `createid` int(0) UNSIGNED NULL DEFAULT NULL,
-  PRIMARY KEY (`id`, `name`) USING BTREE
+  PRIMARY KEY (`id`, `name`) USING BTREE,
+  INDEX `id`(`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -256,5 +348,6 @@ CREATE TABLE `tb_user`  (
 -- ----------------------------
 INSERT INTO `tb_user` VALUES (1, '2021-12-20 14:59:16', '/image/userheads/labixiaoxin.png', '超级管理员', '79010e2bba4fcfb1b2bc150b8f17e030', NULL, '建议唯一账户，拥有系统最高权限。', 1, 0, 'admin', '2', NULL);
 INSERT INTO `tb_user` VALUES (2, '2021-12-31 08:21:40', NULL, '2222', '79010e2bba4fcfb1b2bc150b8f17e030', NULL, NULL, NULL, 0, 'danhua', '2,4', NULL);
+INSERT INTO `tb_user` VALUES (3, '2022-01-01 13:47:12', NULL, 'danhua', '96e79218965eb72c92a549dd5a330112', NULL, NULL, NULL, 0, 'danhua2', NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
