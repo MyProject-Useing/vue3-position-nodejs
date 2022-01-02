@@ -77,10 +77,10 @@ model tb_menu {
   redirect     String?        @db.VarChar(255)
   title        String?        @db.VarChar(255)
   link         String?        @db.VarChar(255)
-  isHide       Int?           @default(0) @db.UnsignedTinyInt
-  isKeepAlive  Int?           @default(1) @db.UnsignedTinyInt
-  isAffix      Int?           @db.UnsignedTinyInt
-  isIframe     Int?           @default(0) @db.UnsignedTinyInt
+  isHide       Int?           @default(0) @db.UnsignedInt
+  isKeepAlive  Int?           @default(1) @db.UnsignedInt
+  isAffix      Int?           @db.UnsignedInt
+  isIframe     Int?           @default(0) @db.UnsignedInt
   roleids      String?        @db.VarChar(255)
   icon         String?        @db.VarChar(255)
   pid          Int?           @db.UnsignedInt
@@ -118,7 +118,7 @@ model tb_article {
   createid           Int?                 @db.UnsignedInt
   content            String?              @db.Text
   status             Int?                 @default(1) @db.UnsignedInt
-  hasmessage         BigInt?              @default(1) @db.UnsignedBigInt
+  hasmessage         Int?                 @default(1) @db.UnsignedInt
   title              String?              @db.VarChar(255)
   typeid             Int?                 @default(1) @db.UnsignedInt
   readtimes          Int?                 @default(0) @db.UnsignedInt
