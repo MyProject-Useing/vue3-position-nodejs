@@ -43,7 +43,7 @@ function getClientIP(req) {
     req.connection.socket.remoteAddress
 
   if (ip === '::1') {
-    ip = 'localhost'
+    ip = '127.0.0.1'
   }
   return ip
 }
