@@ -1,4 +1,7 @@
 const { Common } = require('../../models/index.js')
+
+const { addLoginLog } = require('./log.js')
+
 // const { GetMenulist, SetEnableMenu } = require("../../utils/menu.js");
 const jwt = require('../../utils/jwt.js')
 
@@ -118,8 +121,15 @@ exports.login = function (req, res) {
               { field: 'id', type: '等于', value: _data.id },
             ]),
           })
+
+          addLoginLog(req, '登录成功')
         } else if (logintimes === 5) {
-          res.send({ code: 500, message: '用户已被锁定，请联系管理员！' })
+          res.send({
+            code: 500,
+            message: '用户已被锁定，请联系管理员！',
+          })
+
+          addLoginLog(req, '无效登录，用户已被锁定。')
         } else {
           logintimes++
           Common.update({
@@ -129,6 +139,7 @@ exports.login = function (req, res) {
               { field: 'id', type: '等于', value: _data.id },
             ]),
           })
+
           if (logintimes === 5) {
             res.send({ code: 500, message: '用户已被锁定，请联系管理员！' })
           } else {
@@ -137,6 +148,7 @@ exports.login = function (req, res) {
               message: `密码输入错误，还有${5 - logintimes}次机会！`,
             })
           }
+          addLoginLog(req, '密码输入错误')
         }
       }
     }
@@ -282,6 +294,7 @@ exports.updateDefaultPwd = function (req, res) {
 // Find a single User with a id
 exports.loginOut = function (req, res) {
   res.send({ code: 200, message: '用户已退出' })
+  // addLoginLog(req, '退出登录')
 }
 
 /**

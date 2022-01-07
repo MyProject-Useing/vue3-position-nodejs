@@ -110,6 +110,8 @@ model tb_study_sort {
 model tb_study_types {
   id         Int       @id @default(autoincrement()) @db.UnsignedInt
   createtime DateTime? @default(now()) @db.DateTime(0)
+  label      String?   @db.VarChar(255)
+  createid   Int?
 }
 
 model tb_article {
@@ -161,4 +163,12 @@ model tb_article_type {
   tb_article tb_article[]
 
   @@index([id], map: "id")
+}
+
+model tb_login_log {
+  id         Int       @id @default(autoincrement()) @db.UnsignedInt
+  account    String?   @db.VarChar(18)
+  createtime DateTime? @default(now()) @db.DateTime(0)
+  loginip    String?   @db.VarChar(255)
+  loginstate String?   @db.VarChar(255)
 }

@@ -11,7 +11,7 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 06/01/2022 07:52:25
+ Date: 07/01/2022 18:00:07
 */
 
 SET NAMES utf8mb4;
@@ -42,7 +42,7 @@ CREATE TABLE `tb_article`  (
   CONSTRAINT `tb_article_ibfk_1` FOREIGN KEY (`createid`) REFERENCES `tb_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tb_article_ibfk_2` FOREIGN KEY (`languageid`) REFERENCES `tb_language` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tb_article_ibfk_3` FOREIGN KEY (`typeid`) REFERENCES `tb_article_type` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_article
@@ -69,7 +69,7 @@ CREATE TABLE `tb_article_message`  (
   CONSTRAINT `tb_article_message_ibfk_1` FOREIGN KEY (`artid`) REFERENCES `tb_article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tb_article_message_ibfk_2` FOREIGN KEY (`createid`) REFERENCES `tb_user` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
   CONSTRAINT `tb_article_message_ibfk_3` FOREIGN KEY (`pid`) REFERENCES `tb_article_message` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE = InnoDB AUTO_INCREMENT = 79 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 80 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_article_message
@@ -89,7 +89,7 @@ CREATE TABLE `tb_article_type`  (
   `createid` int(0) UNSIGNED NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_article_type
@@ -113,7 +113,7 @@ CREATE TABLE `tb_common_config`  (
   `createid` int(0) UNSIGNED NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_common_config
@@ -132,7 +132,7 @@ CREATE TABLE `tb_language`  (
   `createid` int(0) UNSIGNED NULL DEFAULT NULL,
   PRIMARY KEY (`id`, `name`) USING BTREE,
   INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_language
@@ -147,6 +147,25 @@ INSERT INTO `tb_language` VALUES (7, '2021-12-27 17:05:45', '印度', NULL);
 INSERT INTO `tb_language` VALUES (8, '2021-12-27 17:05:51', '其他', NULL);
 
 -- ----------------------------
+-- Table structure for tb_login_log
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_login_log`;
+CREATE TABLE `tb_login_log`  (
+  `id` int(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `account` varchar(18) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `createtime` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `loginip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'IP地址',
+  `loginstate` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '登录状态',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_login_log
+-- ----------------------------
+INSERT INTO `tb_login_log` VALUES (1, 'admin', '2022-01-07 09:50:30', '::1', '登录成功');
+INSERT INTO `tb_login_log` VALUES (2, 'admin', '2022-01-07 09:57:39', '127.0.0.1', '登录成功');
+
+-- ----------------------------
 -- Table structure for tb_means
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_means`;
@@ -158,7 +177,7 @@ CREATE TABLE `tb_means`  (
   `badtimes` int(0) UNSIGNED NULL DEFAULT NULL COMMENT '踩次数',
   `createid` int(0) UNSIGNED NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_means
@@ -187,7 +206,7 @@ CREATE TABLE `tb_menu`  (
   `createid` int(0) UNSIGNED NULL DEFAULT NULL COMMENT '创建人',
   `sort` int(0) UNSIGNED NULL DEFAULT 0 COMMENT '排序顺序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_menu
@@ -206,6 +225,9 @@ INSERT INTO `tb_menu` VALUES (15, '2021-12-31 06:28:50', 'personalInfo', 'person
 INSERT INTO `tb_menu` VALUES (16, '2021-12-31 06:30:50', '/material', 'material', 'Layout', NULL, '资料', NULL, 0, 1, NULL, 0, NULL, 'box-open', NULL, NULL, 20);
 INSERT INTO `tb_menu` VALUES (17, '2021-12-31 06:31:50', 'studylist', 'studylist', 'vab/study/index.vue', NULL, '学习资料', NULL, 0, 1, NULL, 0, NULL, 'box-open', 16, NULL, 11);
 INSERT INTO `tb_menu` VALUES (18, '2021-12-31 06:32:20', 'audiolist', 'audiolist', 'vab/audio/index.vue', NULL, '音频资料', NULL, 0, 1, NULL, 0, NULL, 'box-open', 16, NULL, 2);
+INSERT INTO `tb_menu` VALUES (19, '2022-01-07 09:15:40', '/log', '/log', 'Layout', NULL, '日志审计', NULL, 0, 1, NULL, 0, NULL, 'box-open', NULL, NULL, 51);
+INSERT INTO `tb_menu` VALUES (20, '2022-01-07 09:16:24', 'operationLog', 'operationLog', 'vab/log/operationLog', NULL, '操作日志', NULL, 0, 1, NULL, 0, NULL, 'box-open', 19, NULL, 20);
+INSERT INTO `tb_menu` VALUES (21, '2022-01-07 09:46:22', 'loginLog', 'loginLog', 'vab/log/loginLog', NULL, '登录日志', NULL, 0, 1, NULL, 0, NULL, 'box-open', 19, NULL, 10);
 
 -- ----------------------------
 -- Table structure for tb_menu_role
@@ -221,39 +243,11 @@ CREATE TABLE `tb_menu_role`  (
   INDEX `menuid`(`menuid`) USING BTREE,
   CONSTRAINT `tb_menu_role_ibfk_1` FOREIGN KEY (`roleid`) REFERENCES `tb_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tb_menu_role_ibfk_2` FOREIGN KEY (`menuid`) REFERENCES `tb_menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 65 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 93 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_menu_role
 -- ----------------------------
-INSERT INTO `tb_menu_role` VALUES (6, '2021-12-31 07:59:48', 2, 16);
-INSERT INTO `tb_menu_role` VALUES (7, '2021-12-31 07:59:48', 2, 18);
-INSERT INTO `tb_menu_role` VALUES (8, '2021-12-31 07:59:48', 2, 17);
-INSERT INTO `tb_menu_role` VALUES (9, '2021-12-31 07:59:48', 2, 5);
-INSERT INTO `tb_menu_role` VALUES (10, '2021-12-31 07:59:48', 2, 6);
-INSERT INTO `tb_menu_role` VALUES (11, '2021-12-31 07:59:48', 2, 7);
-INSERT INTO `tb_menu_role` VALUES (12, '2021-12-31 07:59:48', 2, 8);
-INSERT INTO `tb_menu_role` VALUES (13, '2021-12-31 07:59:48', 2, 9);
-INSERT INTO `tb_menu_role` VALUES (14, '2021-12-31 07:59:48', 2, 10);
-INSERT INTO `tb_menu_role` VALUES (15, '2021-12-31 07:59:48', 2, 11);
-INSERT INTO `tb_menu_role` VALUES (16, '2021-12-31 07:59:48', 2, 12);
-INSERT INTO `tb_menu_role` VALUES (17, '2021-12-31 07:59:48', 2, 13);
-INSERT INTO `tb_menu_role` VALUES (18, '2021-12-31 07:59:48', 2, 14);
-INSERT INTO `tb_menu_role` VALUES (19, '2021-12-31 07:59:48', 2, 15);
-INSERT INTO `tb_menu_role` VALUES (20, '2021-12-31 07:59:48', 2, 16);
-INSERT INTO `tb_menu_role` VALUES (21, '2021-12-31 07:59:48', 2, 18);
-INSERT INTO `tb_menu_role` VALUES (22, '2021-12-31 07:59:48', 2, 17);
-INSERT INTO `tb_menu_role` VALUES (23, '2021-12-31 07:59:48', 2, 5);
-INSERT INTO `tb_menu_role` VALUES (24, '2021-12-31 07:59:48', 2, 6);
-INSERT INTO `tb_menu_role` VALUES (25, '2021-12-31 07:59:48', 2, 7);
-INSERT INTO `tb_menu_role` VALUES (26, '2021-12-31 07:59:48', 2, 8);
-INSERT INTO `tb_menu_role` VALUES (27, '2021-12-31 07:59:48', 2, 9);
-INSERT INTO `tb_menu_role` VALUES (28, '2021-12-31 07:59:48', 2, 10);
-INSERT INTO `tb_menu_role` VALUES (29, '2021-12-31 07:59:48', 2, 11);
-INSERT INTO `tb_menu_role` VALUES (30, '2021-12-31 07:59:48', 2, 12);
-INSERT INTO `tb_menu_role` VALUES (31, '2021-12-31 07:59:48', 2, 13);
-INSERT INTO `tb_menu_role` VALUES (32, '2021-12-31 07:59:48', 2, 14);
-INSERT INTO `tb_menu_role` VALUES (33, '2021-12-31 07:59:48', 2, 15);
 INSERT INTO `tb_menu_role` VALUES (56, '2021-12-31 08:08:03', 4, 16);
 INSERT INTO `tb_menu_role` VALUES (57, '2021-12-31 08:08:03', 4, 18);
 INSERT INTO `tb_menu_role` VALUES (58, '2021-12-31 08:08:03', 4, 17);
@@ -264,6 +258,23 @@ INSERT INTO `tb_menu_role` VALUES (62, '2021-12-31 08:08:03', 4, 12);
 INSERT INTO `tb_menu_role` VALUES (63, '2021-12-31 08:08:03', 4, 13);
 INSERT INTO `tb_menu_role` VALUES (64, '2021-12-31 08:08:03', 4, 14);
 INSERT INTO `tb_menu_role` VALUES (65, '2021-12-31 08:08:03', 4, 15);
+INSERT INTO `tb_menu_role` VALUES (93, '2022-01-07 09:50:08', 2, 16);
+INSERT INTO `tb_menu_role` VALUES (94, '2022-01-07 09:50:08', 2, 18);
+INSERT INTO `tb_menu_role` VALUES (95, '2022-01-07 09:50:08', 2, 17);
+INSERT INTO `tb_menu_role` VALUES (96, '2022-01-07 09:50:08', 2, 5);
+INSERT INTO `tb_menu_role` VALUES (97, '2022-01-07 09:50:08', 2, 6);
+INSERT INTO `tb_menu_role` VALUES (98, '2022-01-07 09:50:08', 2, 7);
+INSERT INTO `tb_menu_role` VALUES (99, '2022-01-07 09:50:08', 2, 8);
+INSERT INTO `tb_menu_role` VALUES (100, '2022-01-07 09:50:08', 2, 9);
+INSERT INTO `tb_menu_role` VALUES (101, '2022-01-07 09:50:08', 2, 10);
+INSERT INTO `tb_menu_role` VALUES (102, '2022-01-07 09:50:08', 2, 11);
+INSERT INTO `tb_menu_role` VALUES (103, '2022-01-07 09:50:08', 2, 12);
+INSERT INTO `tb_menu_role` VALUES (104, '2022-01-07 09:50:08', 2, 13);
+INSERT INTO `tb_menu_role` VALUES (105, '2022-01-07 09:50:08', 2, 19);
+INSERT INTO `tb_menu_role` VALUES (106, '2022-01-07 09:50:08', 2, 20);
+INSERT INTO `tb_menu_role` VALUES (107, '2022-01-07 09:50:08', 2, 21);
+INSERT INTO `tb_menu_role` VALUES (108, '2022-01-07 09:50:08', 2, 14);
+INSERT INTO `tb_menu_role` VALUES (109, '2022-01-07 09:50:08', 2, 15);
 
 -- ----------------------------
 -- Table structure for tb_role
@@ -278,7 +289,7 @@ CREATE TABLE `tb_role`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `createid`(`createid`) USING BTREE,
   INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_role
@@ -295,7 +306,7 @@ CREATE TABLE `tb_study_sort`  (
   `createtime` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `tagname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_study_sort
@@ -311,7 +322,7 @@ CREATE TABLE `tb_study_types`  (
   `label` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '类型名称',
   `createid` int(0) NULL DEFAULT NULL COMMENT '创建人',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_study_types
@@ -336,7 +347,7 @@ CREATE TABLE `tb_user`  (
   `lastlogintime` datetime(0) NULL DEFAULT NULL COMMENT '最后登录时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_user
