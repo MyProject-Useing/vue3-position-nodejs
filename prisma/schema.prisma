@@ -44,6 +44,7 @@ model tb_user {
   lastlogintime      DateTime?            @db.DateTime(0)
   tb_article         tb_article[]
   tb_article_message tb_article_message[]
+  tb_operation_log   tb_operation_log[]
 
   @@index([id], map: "id")
 }
@@ -171,4 +172,16 @@ model tb_login_log {
   createtime DateTime? @default(now()) @db.DateTime(0)
   loginip    String?   @db.VarChar(255)
   loginstate String?   @db.VarChar(255)
+}
+
+model tb_operation_log {
+  id         Int       @id @default(autoincrement()) @db.UnsignedInt
+  createtime DateTime? @default(now()) @db.DateTime(0)
+  createid   Int?      @db.UnsignedInt
+  details    String?   @db.VarChar(255)
+  menuname   String?   @db.VarChar(255)
+  opertype   String?   @db.VarChar(255)
+  tb_user    tb_user?  @relation(fields: [createid], references: [id], onUpdate: SetNull, map: "tb_operation_log_ibfk_1")
+
+  @@index([createid], map: "createid")
 }

@@ -11,7 +11,7 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 07/01/2022 18:00:07
+ Date: 07/01/2022 18:30:02
 */
 
 SET NAMES utf8mb4;
@@ -164,6 +164,7 @@ CREATE TABLE `tb_login_log`  (
 -- ----------------------------
 INSERT INTO `tb_login_log` VALUES (1, 'admin', '2022-01-07 09:50:30', '::1', '登录成功');
 INSERT INTO `tb_login_log` VALUES (2, 'admin', '2022-01-07 09:57:39', '127.0.0.1', '登录成功');
+INSERT INTO `tb_login_log` VALUES (3, 'admin', '2022-01-07 10:03:19', '127.0.0.1', '登录成功');
 
 -- ----------------------------
 -- Table structure for tb_means
@@ -275,6 +276,31 @@ INSERT INTO `tb_menu_role` VALUES (106, '2022-01-07 09:50:08', 2, 20);
 INSERT INTO `tb_menu_role` VALUES (107, '2022-01-07 09:50:08', 2, 21);
 INSERT INTO `tb_menu_role` VALUES (108, '2022-01-07 09:50:08', 2, 14);
 INSERT INTO `tb_menu_role` VALUES (109, '2022-01-07 09:50:08', 2, 15);
+
+-- ----------------------------
+-- Table structure for tb_operation_log
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_operation_log`;
+CREATE TABLE `tb_operation_log`  (
+  `id` int(0) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `createtime` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `createid` int(0) UNSIGNED NULL DEFAULT NULL COMMENT '创建人id',
+  `details` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '操作详情',
+  `menuname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '模块名称',
+  `opertype` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '操作类型',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `createid`(`createid`) USING BTREE,
+  CONSTRAINT `tb_operation_log_ibfk_1` FOREIGN KEY (`createid`) REFERENCES `tb_user` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_operation_log
+-- ----------------------------
+INSERT INTO `tb_operation_log` VALUES (4, '2022-01-07 10:26:42', 1, '访问界面首页', '首页', '界面查询');
+INSERT INTO `tb_operation_log` VALUES (5, '2022-01-07 10:27:25', 1, '访问界面首页', '首页', '界面查询');
+INSERT INTO `tb_operation_log` VALUES (6, '2022-01-07 10:27:26', 1, '访问界面首页', '首页', '界面查询');
+INSERT INTO `tb_operation_log` VALUES (7, '2022-01-07 10:27:29', 1, '访问界面用户管理', '用户管理', '界面查询');
+INSERT INTO `tb_operation_log` VALUES (8, '2022-01-07 10:27:32', 1, '访问界面操作日志', '操作日志', '界面查询');
 
 -- ----------------------------
 -- Table structure for tb_role
