@@ -11,7 +11,7 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 07/01/2022 18:30:02
+ Date: 21/02/2022 22:42:10
 */
 
 SET NAMES utf8mb4;
@@ -42,7 +42,7 @@ CREATE TABLE `tb_article`  (
   CONSTRAINT `tb_article_ibfk_1` FOREIGN KEY (`createid`) REFERENCES `tb_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tb_article_ibfk_2` FOREIGN KEY (`languageid`) REFERENCES `tb_language` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tb_article_ibfk_3` FOREIGN KEY (`typeid`) REFERENCES `tb_article_type` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_article
@@ -69,7 +69,7 @@ CREATE TABLE `tb_article_message`  (
   CONSTRAINT `tb_article_message_ibfk_1` FOREIGN KEY (`artid`) REFERENCES `tb_article` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tb_article_message_ibfk_2` FOREIGN KEY (`createid`) REFERENCES `tb_user` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
   CONSTRAINT `tb_article_message_ibfk_3` FOREIGN KEY (`pid`) REFERENCES `tb_article_message` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE = InnoDB AUTO_INCREMENT = 80 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 79 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_article_message
@@ -89,7 +89,7 @@ CREATE TABLE `tb_article_type`  (
   `createid` int(0) UNSIGNED NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_article_type
@@ -113,7 +113,7 @@ CREATE TABLE `tb_common_config`  (
   `createid` int(0) UNSIGNED NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_common_config
@@ -132,7 +132,7 @@ CREATE TABLE `tb_language`  (
   `createid` int(0) UNSIGNED NULL DEFAULT NULL,
   PRIMARY KEY (`id`, `name`) USING BTREE,
   INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_language
@@ -157,7 +157,7 @@ CREATE TABLE `tb_login_log`  (
   `loginip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'IP地址',
   `loginstate` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '登录状态',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_login_log
@@ -165,6 +165,18 @@ CREATE TABLE `tb_login_log`  (
 INSERT INTO `tb_login_log` VALUES (1, 'admin', '2022-01-07 09:50:30', '::1', '登录成功');
 INSERT INTO `tb_login_log` VALUES (2, 'admin', '2022-01-07 09:57:39', '127.0.0.1', '登录成功');
 INSERT INTO `tb_login_log` VALUES (3, 'admin', '2022-01-07 10:03:19', '127.0.0.1', '登录成功');
+INSERT INTO `tb_login_log` VALUES (4, 'admin', '2022-01-07 10:31:46', 'localhost', '密码输入错误');
+INSERT INTO `tb_login_log` VALUES (5, 'admin', '2022-01-07 10:31:47', 'localhost', '密码输入错误');
+INSERT INTO `tb_login_log` VALUES (6, 'admin', '2022-01-07 10:31:49', 'localhost', '登录成功');
+INSERT INTO `tb_login_log` VALUES (7, 'admin', '2022-02-21 11:07:17', '127.0.0.1', '登录成功');
+INSERT INTO `tb_login_log` VALUES (8, 'admin', '2022-02-21 11:09:40', '127.0.0.1', '登录成功');
+INSERT INTO `tb_login_log` VALUES (9, 'admin', '2022-02-21 11:53:20', '127.0.0.1', '登录成功');
+INSERT INTO `tb_login_log` VALUES (10, 'admin', '2022-02-21 12:14:38', '127.0.0.1', '登录成功');
+INSERT INTO `tb_login_log` VALUES (11, 'admin', '2022-02-21 12:15:25', '127.0.0.1', '登录成功');
+INSERT INTO `tb_login_log` VALUES (12, 'admin', '2022-02-21 12:18:14', '127.0.0.1', '登录成功');
+INSERT INTO `tb_login_log` VALUES (13, 'admin', '2022-02-21 12:19:03', '127.0.0.1', '登录成功');
+INSERT INTO `tb_login_log` VALUES (14, 'admin', '2022-02-21 12:21:05', '127.0.0.1', '登录成功');
+INSERT INTO `tb_login_log` VALUES (15, 'admin', '2022-02-21 12:26:19', '127.0.0.1', '登录成功');
 
 -- ----------------------------
 -- Table structure for tb_means
@@ -178,7 +190,7 @@ CREATE TABLE `tb_means`  (
   `badtimes` int(0) UNSIGNED NULL DEFAULT NULL COMMENT '踩次数',
   `createid` int(0) UNSIGNED NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_means
@@ -207,28 +219,29 @@ CREATE TABLE `tb_menu`  (
   `createid` int(0) UNSIGNED NULL DEFAULT NULL COMMENT '创建人',
   `sort` int(0) UNSIGNED NULL DEFAULT 0 COMMENT '排序顺序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_menu
 -- ----------------------------
-INSERT INTO `tb_menu` VALUES (5, '2021-12-31 02:51:43', '/permission', 'permission', 'Layout', NULL, '权限配置', NULL, 0, 1, NULL, 0, NULL, 'users-cog', NULL, NULL, 30);
+INSERT INTO `tb_menu` VALUES (5, '2021-12-31 02:51:43', '/permission', 'permission', 'Layout', NULL, '权限配置', NULL, 0, 1, NULL, 0, NULL, 'users-cog', NULL, NULL, 50);
 INSERT INTO `tb_menu` VALUES (6, '2021-12-31 06:09:33', 'user', 'user', 'personnelManagement/userManagement/index.vue', NULL, '用户管理', NULL, 0, 1, NULL, 0, NULL, 'user-cog', 5, NULL, 10);
 INSERT INTO `tb_menu` VALUES (7, '2021-12-31 06:10:22', 'role', 'role', 'personnelManagement/roleManagement/index.vue', NULL, '角色管理', NULL, 0, 1, NULL, 0, NULL, 'user-shield', 5, NULL, 20);
 INSERT INTO `tb_menu` VALUES (8, '2021-12-31 06:13:41', 'menu', 'menu', 'personnelManagement/menuManagement/index.vue', NULL, '菜单管理', NULL, 0, 1, NULL, 0, NULL, 'dice-six', 5, NULL, 30);
-INSERT INTO `tb_menu` VALUES (9, '2021-12-31 06:14:45', '/meet', 'meet', 'Layout', NULL, '资料管理', NULL, 0, 1, NULL, 0, NULL, 'tasks', NULL, NULL, 40);
-INSERT INTO `tb_menu` VALUES (10, '2021-12-31 06:17:19', 'meetlist', 'meetlist', 'vab/meet/index.vue', NULL, '资料列表', NULL, 0, 1, NULL, 0, NULL, 'list', 9, NULL, 10);
-INSERT INTO `tb_menu` VALUES (11, '2021-12-31 06:23:12', 'meetcreate', 'meetcreate', 'vab/meet/components/create.vue', NULL, '创建资料', NULL, 0, 1, NULL, 0, NULL, 'plus', 9, NULL, 20);
-INSERT INTO `tb_menu` VALUES (12, '2021-12-31 06:24:12', 'meetedit', 'meetedit', 'vab/meet/components/edit.vue', NULL, '资料编辑', NULL, 1, 1, NULL, 0, NULL, 'file-signature', 9, NULL, 30);
-INSERT INTO `tb_menu` VALUES (13, '2021-12-31 06:24:49', 'meetdetils', 'meetdetils', 'vab/meet/components/details.vue', NULL, '资料详情', NULL, 1, 1, NULL, 0, NULL, 'money-check', 9, NULL, 40);
-INSERT INTO `tb_menu` VALUES (14, '2021-12-31 06:26:21', '/personalCenter', 'personalCenter', 'Layout', NULL, '个人中心', NULL, 1, 1, NULL, 0, NULL, 'street-view', NULL, NULL, 80);
-INSERT INTO `tb_menu` VALUES (15, '2021-12-31 06:28:50', 'personalInfo', 'personalInfo', 'personalCenter/index.vue', NULL, '基础信息', NULL, 1, 1, NULL, 0, NULL, 'street-view', 14, NULL, 0);
+INSERT INTO `tb_menu` VALUES (9, '2021-12-31 06:14:45', '/meet', 'meet', 'Layout', NULL, '资料管理', NULL, 0, 1, NULL, 0, NULL, 'tasks', NULL, NULL, 30);
+INSERT INTO `tb_menu` VALUES (10, '2021-12-31 06:17:19', 'meetlist', 'meetlist', 'vab/meet/index.vue', NULL, '资料列表', NULL, 0, 1, NULL, 0, NULL, 'list', 9, NULL, 20);
+INSERT INTO `tb_menu` VALUES (11, '2021-12-31 06:23:12', 'meetcreate', 'meetcreate', 'vab/meet/components/create.vue', NULL, '创建资料', NULL, 0, 1, NULL, 0, NULL, 'plus', 9, NULL, 30);
+INSERT INTO `tb_menu` VALUES (12, '2021-12-31 06:24:12', 'meetedit', 'meetedit', 'vab/meet/components/edit.vue', NULL, '资料编辑', NULL, 1, 1, NULL, 0, NULL, 'file-signature', 9, NULL, 40);
+INSERT INTO `tb_menu` VALUES (13, '2021-12-31 06:24:49', 'meetdetils', 'meetdetils', 'vab/meet/components/details.vue', NULL, '资料详情', NULL, 1, 1, NULL, 0, NULL, 'money-check', 9, NULL, 50);
+INSERT INTO `tb_menu` VALUES (14, '2021-12-31 06:26:21', '/personalCenter', 'personalCenter', 'Layout', '', '个人中心', NULL, 1, 1, NULL, 0, NULL, 'street-view', NULL, NULL, 80);
+INSERT INTO `tb_menu` VALUES (15, '2021-12-31 06:28:50', 'personalInfo', 'personalInfo', 'personalCenter/index.vue', NULL, '基础信息', NULL, 1, 1, NULL, 0, NULL, 'street-view', 14, NULL, 10);
 INSERT INTO `tb_menu` VALUES (16, '2021-12-31 06:30:50', '/material', 'material', 'Layout', NULL, '资料', NULL, 0, 1, NULL, 0, NULL, 'box-open', NULL, NULL, 20);
-INSERT INTO `tb_menu` VALUES (17, '2021-12-31 06:31:50', 'studylist', 'studylist', 'vab/study/index.vue', NULL, '学习资料', NULL, 0, 1, NULL, 0, NULL, 'box-open', 16, NULL, 11);
-INSERT INTO `tb_menu` VALUES (18, '2021-12-31 06:32:20', 'audiolist', 'audiolist', 'vab/audio/index.vue', NULL, '音频资料', NULL, 0, 1, NULL, 0, NULL, 'box-open', 16, NULL, 2);
-INSERT INTO `tb_menu` VALUES (19, '2022-01-07 09:15:40', '/log', '/log', 'Layout', NULL, '日志审计', NULL, 0, 1, NULL, 0, NULL, 'box-open', NULL, NULL, 51);
+INSERT INTO `tb_menu` VALUES (17, '2021-12-31 06:31:50', 'studylist', 'studylist', 'vab/study/index.vue', NULL, '学习资料', NULL, 0, 1, NULL, 0, NULL, 'box-open', 16, NULL, 2);
+INSERT INTO `tb_menu` VALUES (18, '2021-12-31 06:32:20', 'audiolist', 'audiolist', 'vab/audio/index.vue', NULL, '音频资料', NULL, 0, 1, NULL, 0, NULL, 'box-open', 16, NULL, 10);
+INSERT INTO `tb_menu` VALUES (19, '2022-01-07 09:15:40', '/log', '/log', 'Layout', NULL, '日志审计', NULL, 0, 1, NULL, 0, NULL, 'box-open', NULL, NULL, 40);
 INSERT INTO `tb_menu` VALUES (20, '2022-01-07 09:16:24', 'operationLog', 'operationLog', 'vab/log/operationLog', NULL, '操作日志', NULL, 0, 1, NULL, 0, NULL, 'box-open', 19, NULL, 20);
 INSERT INTO `tb_menu` VALUES (21, '2022-01-07 09:46:22', 'loginLog', 'loginLog', 'vab/log/loginLog', NULL, '登录日志', NULL, 0, 1, NULL, 0, NULL, 'box-open', 19, NULL, 10);
+INSERT INTO `tb_menu` VALUES (23, '2022-02-21 12:10:35', 'meetcart', 'meetcart', 'vab/meet/cart.vue', NULL, '资料首页', NULL, 0, 1, NULL, 0, NULL, 'box', 9, NULL, 10);
 
 -- ----------------------------
 -- Table structure for tb_menu_role
@@ -244,7 +257,7 @@ CREATE TABLE `tb_menu_role`  (
   INDEX `menuid`(`menuid`) USING BTREE,
   CONSTRAINT `tb_menu_role_ibfk_1` FOREIGN KEY (`roleid`) REFERENCES `tb_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tb_menu_role_ibfk_2` FOREIGN KEY (`menuid`) REFERENCES `tb_menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 93 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 161 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_menu_role
@@ -259,23 +272,24 @@ INSERT INTO `tb_menu_role` VALUES (62, '2021-12-31 08:08:03', 4, 12);
 INSERT INTO `tb_menu_role` VALUES (63, '2021-12-31 08:08:03', 4, 13);
 INSERT INTO `tb_menu_role` VALUES (64, '2021-12-31 08:08:03', 4, 14);
 INSERT INTO `tb_menu_role` VALUES (65, '2021-12-31 08:08:03', 4, 15);
-INSERT INTO `tb_menu_role` VALUES (93, '2022-01-07 09:50:08', 2, 16);
-INSERT INTO `tb_menu_role` VALUES (94, '2022-01-07 09:50:08', 2, 18);
-INSERT INTO `tb_menu_role` VALUES (95, '2022-01-07 09:50:08', 2, 17);
-INSERT INTO `tb_menu_role` VALUES (96, '2022-01-07 09:50:08', 2, 5);
-INSERT INTO `tb_menu_role` VALUES (97, '2022-01-07 09:50:08', 2, 6);
-INSERT INTO `tb_menu_role` VALUES (98, '2022-01-07 09:50:08', 2, 7);
-INSERT INTO `tb_menu_role` VALUES (99, '2022-01-07 09:50:08', 2, 8);
-INSERT INTO `tb_menu_role` VALUES (100, '2022-01-07 09:50:08', 2, 9);
-INSERT INTO `tb_menu_role` VALUES (101, '2022-01-07 09:50:08', 2, 10);
-INSERT INTO `tb_menu_role` VALUES (102, '2022-01-07 09:50:08', 2, 11);
-INSERT INTO `tb_menu_role` VALUES (103, '2022-01-07 09:50:08', 2, 12);
-INSERT INTO `tb_menu_role` VALUES (104, '2022-01-07 09:50:08', 2, 13);
-INSERT INTO `tb_menu_role` VALUES (105, '2022-01-07 09:50:08', 2, 19);
-INSERT INTO `tb_menu_role` VALUES (106, '2022-01-07 09:50:08', 2, 20);
-INSERT INTO `tb_menu_role` VALUES (107, '2022-01-07 09:50:08', 2, 21);
-INSERT INTO `tb_menu_role` VALUES (108, '2022-01-07 09:50:08', 2, 14);
-INSERT INTO `tb_menu_role` VALUES (109, '2022-01-07 09:50:08', 2, 15);
+INSERT INTO `tb_menu_role` VALUES (144, '2022-02-21 12:20:48', 2, 16);
+INSERT INTO `tb_menu_role` VALUES (145, '2022-02-21 12:20:48', 2, 17);
+INSERT INTO `tb_menu_role` VALUES (146, '2022-02-21 12:20:48', 2, 18);
+INSERT INTO `tb_menu_role` VALUES (147, '2022-02-21 12:20:48', 2, 9);
+INSERT INTO `tb_menu_role` VALUES (148, '2022-02-21 12:20:48', 2, 23);
+INSERT INTO `tb_menu_role` VALUES (149, '2022-02-21 12:20:48', 2, 10);
+INSERT INTO `tb_menu_role` VALUES (150, '2022-02-21 12:20:48', 2, 11);
+INSERT INTO `tb_menu_role` VALUES (151, '2022-02-21 12:20:48', 2, 12);
+INSERT INTO `tb_menu_role` VALUES (152, '2022-02-21 12:20:48', 2, 13);
+INSERT INTO `tb_menu_role` VALUES (153, '2022-02-21 12:20:48', 2, 19);
+INSERT INTO `tb_menu_role` VALUES (154, '2022-02-21 12:20:48', 2, 21);
+INSERT INTO `tb_menu_role` VALUES (155, '2022-02-21 12:20:48', 2, 20);
+INSERT INTO `tb_menu_role` VALUES (156, '2022-02-21 12:20:48', 2, 5);
+INSERT INTO `tb_menu_role` VALUES (157, '2022-02-21 12:20:48', 2, 6);
+INSERT INTO `tb_menu_role` VALUES (158, '2022-02-21 12:20:48', 2, 7);
+INSERT INTO `tb_menu_role` VALUES (159, '2022-02-21 12:20:48', 2, 8);
+INSERT INTO `tb_menu_role` VALUES (160, '2022-02-21 12:20:48', 2, 14);
+INSERT INTO `tb_menu_role` VALUES (161, '2022-02-21 12:20:48', 2, 15);
 
 -- ----------------------------
 -- Table structure for tb_operation_log
@@ -288,19 +302,148 @@ CREATE TABLE `tb_operation_log`  (
   `details` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '操作详情',
   `menuname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '模块名称',
   `opertype` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '操作类型',
+  `account` varchar(18) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '账户名',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `createid`(`createid`) USING BTREE,
   CONSTRAINT `tb_operation_log_ibfk_1` FOREIGN KEY (`createid`) REFERENCES `tb_user` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 136 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_operation_log
 -- ----------------------------
-INSERT INTO `tb_operation_log` VALUES (4, '2022-01-07 10:26:42', 1, '访问界面首页', '首页', '界面查询');
-INSERT INTO `tb_operation_log` VALUES (5, '2022-01-07 10:27:25', 1, '访问界面首页', '首页', '界面查询');
-INSERT INTO `tb_operation_log` VALUES (6, '2022-01-07 10:27:26', 1, '访问界面首页', '首页', '界面查询');
-INSERT INTO `tb_operation_log` VALUES (7, '2022-01-07 10:27:29', 1, '访问界面用户管理', '用户管理', '界面查询');
-INSERT INTO `tb_operation_log` VALUES (8, '2022-01-07 10:27:32', 1, '访问界面操作日志', '操作日志', '界面查询');
+INSERT INTO `tb_operation_log` VALUES (4, '2022-01-07 10:26:42', 1, '访问界面首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (5, '2022-01-07 10:27:25', 1, '访问界面首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (6, '2022-01-07 10:27:26', 1, '访问界面首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (7, '2022-01-07 10:27:29', 1, '访问界面用户管理', '用户管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (8, '2022-01-07 10:27:32', 1, '访问界面操作日志', '操作日志', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (9, '2022-01-07 10:31:23', 1, '访问界面登录日志', '登录日志', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (10, '2022-01-07 10:31:25', 1, '访问界面首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (11, '2022-01-07 10:31:33', 1, '访问界面登录日志', '登录日志', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (12, '2022-01-07 10:31:37', 1, '访问界面操作日志', '操作日志', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (13, '2022-01-07 10:31:49', 1, '访问界面操作日志', '操作日志', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (14, '2022-01-07 10:31:51', 1, '访问界面登录日志', '登录日志', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (15, '2022-01-07 10:33:16', 1, '访问界面未知', '未知', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (16, '2022-01-07 10:33:17', 1, '访问界面首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (17, '2022-01-07 10:33:23', 1, '访问界面操作日志', '操作日志', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (18, '2022-01-07 10:37:22', 1, '访问访问undefined', '访问undefined', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (19, '2022-01-07 10:37:23', 1, '访问访问首页', '访问首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (20, '2022-01-07 10:37:27', 1, '访问访问操作日志', '访问操作日志', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (21, '2022-01-07 10:37:48', 1, '访问undefined', '访问undefined', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (22, '2022-01-07 10:37:50', 1, '访问undefined', '访问undefined', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (23, '2022-01-07 10:37:51', 1, '访问首页', '访问首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (24, '2022-01-07 10:37:53', 1, '访问操作日志', '访问操作日志', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (25, '2022-01-07 10:38:18', 1, '界面不存在', '界面不存在', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (26, '2022-01-07 10:38:19', 1, '访问首页', '访问首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (27, '2022-01-07 10:38:22', 1, '访问登录日志', '访问登录日志', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (28, '2022-01-07 10:38:24', 1, '访问操作日志', '访问操作日志', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (29, '2022-01-07 10:39:13', 1, '界面不存在', '界面不存在', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (30, '2022-01-07 10:39:14', 1, '界面不存在', '界面不存在', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (31, '2022-01-07 10:39:15', 1, '访问首页', '访问首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (32, '2022-01-07 10:39:17', 1, '访问登录日志', '访问登录日志', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (33, '2022-01-07 10:39:19', 1, '访问操作日志', '访问操作日志', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (34, '2022-01-07 10:39:35', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (35, '2022-01-07 10:39:36', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (36, '2022-01-07 10:39:37', 1, '访问登录日志', '登录日志', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (37, '2022-01-07 10:39:40', 1, '访问操作日志', '操作日志', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (38, '2022-02-21 11:01:10', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (39, '2022-02-21 11:01:32', 1, '访问资料列表', '资料列表', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (40, '2022-02-21 11:02:09', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (41, '2022-02-21 11:07:17', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (42, '2022-02-21 11:07:29', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (43, '2022-02-21 11:09:40', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (44, '2022-02-21 11:09:44', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (45, '2022-02-21 11:10:56', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (46, '2022-02-21 11:11:02', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (47, '2022-02-21 11:11:06', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (48, '2022-02-21 11:14:13', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (49, '2022-02-21 11:14:15', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (50, '2022-02-21 11:14:17', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (51, '2022-02-21 11:19:37', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (52, '2022-02-21 11:19:39', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (53, '2022-02-21 11:19:40', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (54, '2022-02-21 11:21:47', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (55, '2022-02-21 11:21:48', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (56, '2022-02-21 11:21:50', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (57, '2022-02-21 11:22:29', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (58, '2022-02-21 11:22:30', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (59, '2022-02-21 11:22:32', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (60, '2022-02-21 11:30:13', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (61, '2022-02-21 11:30:14', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (62, '2022-02-21 11:30:18', 1, '访问创建资料', '创建资料', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (63, '2022-02-21 11:30:19', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (64, '2022-02-21 11:31:32', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (65, '2022-02-21 11:31:36', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (66, '2022-02-21 11:31:38', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (67, '2022-02-21 11:38:38', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (68, '2022-02-21 11:38:44', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (69, '2022-02-21 11:39:29', 1, '访问创建资料', '创建资料', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (70, '2022-02-21 11:39:30', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (71, '2022-02-21 11:46:08', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (72, '2022-02-21 11:46:10', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (73, '2022-02-21 11:46:11', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (74, '2022-02-21 11:49:06', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (75, '2022-02-21 11:49:08', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (76, '2022-02-21 11:49:10', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (77, '2022-02-21 11:50:49', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (78, '2022-02-21 11:50:51', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (79, '2022-02-21 11:50:53', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (80, '2022-02-21 11:52:00', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (81, '2022-02-21 11:52:02', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (82, '2022-02-21 11:52:03', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (83, '2022-02-21 11:53:20', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (84, '2022-02-21 12:04:20', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (85, '2022-02-21 12:04:24', 1, '访问资料列表', '资料列表', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (86, '2022-02-21 12:07:27', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (87, '2022-02-21 12:07:33', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (88, '2022-02-21 12:07:43', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (89, '2022-02-21 12:07:56', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (90, '2022-02-21 12:08:01', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (91, '2022-02-21 12:08:42', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (92, '2022-02-21 12:08:45', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (93, '2022-02-21 12:08:48', 1, '访问创建资料', '创建资料', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (94, '2022-02-21 12:08:55', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (95, '2022-02-21 12:11:44', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (96, '2022-02-21 12:11:48', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (97, '2022-02-21 12:11:56', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (98, '2022-02-21 12:12:02', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (99, '2022-02-21 12:12:07', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (100, '2022-02-21 12:12:37', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (101, '2022-02-21 12:12:38', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (102, '2022-02-21 12:12:42', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (103, '2022-02-21 12:13:53', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (104, '2022-02-21 12:13:55', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (105, '2022-02-21 12:13:56', 1, '访问资料列表', '资料列表', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (106, '2022-02-21 12:13:58', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (107, '2022-02-21 12:14:38', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (108, '2022-02-21 12:14:53', 1, '访问角色管理', '角色管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (109, '2022-02-21 12:15:25', 1, '访问角色管理', '角色管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (110, '2022-02-21 12:15:28', 1, '访问资料列表', '资料列表', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (111, '2022-02-21 12:15:34', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (112, '2022-02-21 12:15:56', 1, '访问角色管理', '角色管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (113, '2022-02-21 12:16:00', 1, '访问用户管理', '用户管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (114, '2022-02-21 12:16:07', 1, '访问角色管理', '角色管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (115, '2022-02-21 12:18:08', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (116, '2022-02-21 12:18:09', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (117, '2022-02-21 12:18:10', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (118, '2022-02-21 12:18:14', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (119, '2022-02-21 12:18:43', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (120, '2022-02-21 12:19:03', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (121, '2022-02-21 12:20:35', 1, '访问角色管理', '角色管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (122, '2022-02-21 12:21:05', 1, '访问角色管理', '角色管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (123, '2022-02-21 12:22:43', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (124, '2022-02-21 12:22:44', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (125, '2022-02-21 12:22:58', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (126, '2022-02-21 12:23:48', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (127, '2022-02-21 12:23:54', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (128, '2022-02-21 12:24:19', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (129, '2022-02-21 12:25:52', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (130, '2022-02-21 12:25:55', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (131, '2022-02-21 12:25:57', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (132, '2022-02-21 12:25:59', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (133, '2022-02-21 12:26:19', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (134, '2022-02-21 12:26:21', 1, '访问资料首页', '资料首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (135, '2022-02-21 12:26:24', 1, '访问资料列表', '资料列表', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (136, '2022-02-21 12:26:26', 1, '访问资料首页', '资料首页', '界面查询', NULL);
 
 -- ----------------------------
 -- Table structure for tb_role
@@ -315,7 +458,7 @@ CREATE TABLE `tb_role`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `createid`(`createid`) USING BTREE,
   INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_role
@@ -332,7 +475,7 @@ CREATE TABLE `tb_study_sort`  (
   `createtime` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `tagname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_study_sort
@@ -348,7 +491,7 @@ CREATE TABLE `tb_study_types`  (
   `label` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '类型名称',
   `createid` int(0) NULL DEFAULT NULL COMMENT '创建人',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_study_types
@@ -373,7 +516,7 @@ CREATE TABLE `tb_user`  (
   `lastlogintime` datetime(0) NULL DEFAULT NULL COMMENT '最后登录时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_user
