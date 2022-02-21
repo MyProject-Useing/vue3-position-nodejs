@@ -1,29 +1,3 @@
-// 获取要设置的属性名称
-function GetSetValue(dataList) {
-  let fieldList = [];
-  let valueList = [];
-  // "UPDATE tb_user SET email = ?, name = ?, active = ? WHERE id = ?",
-  dataList.forEach(function (item) {
-    fieldList.push(item.field + " = ?");
-    valueList.push(item.value);
-  });
-
-  return {
-    fieldSql: fieldList.join(","),
-    valueList: valueList,
-  };
-}
-
-// 获取分页的sql
-function GetPaperStr(pager = null) {
-  // 是否要分页
-  var limit =
-    pager != null
-      ? ` limit ${(pager.pageNum - 1) * pager.pageSize} ,${pager.pageSize}`
-      : "";
-  return limit;
-}
-
 // 获取排序的sql
 function GetSortStr(sort) {
   if (!sort || sort.length == 0) {
@@ -178,12 +152,7 @@ function getWhereBase(reqBody) {
   // 是否分页查询
   //skip 指定应跳过列表中返回的对象的数量。
   //take 指定在列表中应该返回多少个对象（从列表的开头（正值）或结尾（负值）获取，或者从 cursor 位置（如果使用）。
-  if (
-    reqBody.skip &&
-    reqBody.take &&
-    !isNaN(reqBody.skip) &&
-    !isNaN(reqBody.take)
-  ) {
+  if (!isNaN(reqBody.skip) && !isNaN(reqBody.take)) {
     filterObj = {
       ...filterObj,
       ...{ skip: parseInt(reqBody.skip), take: parseInt(reqBody.take) },
@@ -194,8 +163,12 @@ function getWhereBase(reqBody) {
 }
 
 function getTotalStr(reqBody) {
-  let filterObj = {};
-
+  // 仅查询id
+  let filterObj = {
+    select: {
+      id: true,
+    },
+  };
   // 是否有过滤条件
   if (reqBody.conditions && reqBody.conditions.length > 0) {
     const whereList = JSON.parse(reqBody.conditions.trim());
@@ -203,6 +176,7 @@ function getTotalStr(reqBody) {
       filterObj = { ...filterObj, ...GetWhere(whereList) };
     }
   }
+
   return filterObj;
 }
 
@@ -211,8 +185,6 @@ module.exports = {
   GetWhere,
   GetSortStr,
   GetSelectStr,
-  GetPaperStr,
-  GetSetValue,
   getWhereBase,
   getTotalStr,
 };

@@ -11,7 +11,9 @@ const { methodList } = require("../../utils/method-name");
  */
 async function callMethod(reqBody, options, callback) {
   const tableName = reqBody.indexName;
-  if (!prisma[tableName]) {
+  const prismaObject = prisma[tableName];
+
+  if (!prismaObject) {
     if (typeof callback == "function") {
       callback({ code: 500, message: "无法识别：" + tableName });
     }
@@ -21,22 +23,20 @@ async function callMethod(reqBody, options, callback) {
   const filterObj = utils.getWhereBase(reqBody);
 
   if (filterObj != null) {
-    const resData = await prisma[tableName][options.type](filterObj);
+    const resData = await prismaObject[options.type](filterObj);
     if (typeof callback == "function") {
       let response = {
         code: 200,
         message: options.message,
         data: options.type === "createMany" ? null : resData,
       };
- 
       // 存在分页 需要返回总数
-      if (options.type === "findMany") {
-        const totalData = await prisma[tableName][options.type](
+      if (reqBody.take) {
+        const totalData = await prismaObject[options.type](
           utils.getTotalStr(reqBody)
         );
-        response.total = 0;
+        response.total = totalData.length;
       }
-
       callback(response);
     }
   } else {
