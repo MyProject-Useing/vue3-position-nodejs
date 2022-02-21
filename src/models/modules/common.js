@@ -23,11 +23,21 @@ async function callMethod(reqBody, options, callback) {
   if (filterObj != null) {
     const resData = await prisma[tableName][options.type](filterObj);
     if (typeof callback == "function") {
-      callback({
+      let response = {
         code: 200,
         message: options.message,
         data: options.type === "createMany" ? null : resData,
-      });
+      };
+ 
+      // 存在分页 需要返回总数
+      if (options.type === "findMany") {
+        const totalData = await prisma[tableName][options.type](
+          utils.getTotalStr(reqBody)
+        );
+        response.total = 0;
+      }
+
+      callback(response);
     }
   } else {
     if (typeof callback == "function") {
@@ -35,6 +45,8 @@ async function callMethod(reqBody, options, callback) {
     }
   }
 }
+
+// findMany
 
 methodList.forEach((item) => {
   exports[item.name] = async (reqBody, result) =>

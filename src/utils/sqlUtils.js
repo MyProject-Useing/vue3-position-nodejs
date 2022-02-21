@@ -145,16 +145,6 @@ function getWhereBase(reqBody) {
     }
   }
 
-  // 是否只查一部分字段
-  if (reqBody.select && reqBody.select.length > 0) {
-    const selectList = JSON.parse(reqBody.select.trim());
-    if (typeof selectList === "object") {
-      filterObj = { ...filterObj, ...GetSelectStr(selectList) };
-    } else {
-      return null;
-    }
-  }
-
   // 设置数据字段
   if (reqBody.dataList && reqBody.dataList.length > 0) {
     const dataList = JSON.parse(reqBody.dataList.trim());
@@ -203,6 +193,19 @@ function getWhereBase(reqBody) {
   return filterObj;
 }
 
+function getTotalStr(reqBody) {
+  let filterObj = {};
+
+  // 是否有过滤条件
+  if (reqBody.conditions && reqBody.conditions.length > 0) {
+    const whereList = JSON.parse(reqBody.conditions.trim());
+    if (typeof whereList === "object" && whereList.length > 0) {
+      filterObj = { ...filterObj, ...GetWhere(whereList) };
+    }
+  }
+  return filterObj;
+}
+
 module.exports = {
   GetJoiner,
   GetWhere,
@@ -211,4 +214,5 @@ module.exports = {
   GetPaperStr,
   GetSetValue,
   getWhereBase,
+  getTotalStr,
 };
