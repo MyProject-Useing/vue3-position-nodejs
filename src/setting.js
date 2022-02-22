@@ -33,10 +33,6 @@ module.exports = {
   userDetaultPhoto:'/image/userheads/default.png',
 
   errorCode:500,
-
   successCode:200,
-
-
   timeoutCode:403,
-
 };

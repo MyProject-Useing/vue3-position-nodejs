@@ -46,6 +46,43 @@ async function callMethod(reqBody, options, callback) {
   }
 }
 
+async function getGroup(reqBody, options, callback) {
+  const tableName = reqBody.indexName;
+  const prismaObject = prisma[tableName];
+
+  if (!prismaObject) {
+    if (typeof callback == "function") {
+      callback({ code: 500, message: "无法识别：" + tableName });
+    }
+    return null;
+  }
+
+  const groupUsers = await prismaObject.groupBy({
+    by: ["createtime"],
+    count: {
+      createtime: true,
+    },
+    orderBy: {
+      _count: {
+        createtime: "desc",
+      },
+    },
+    where: {
+      createtime: {
+        contains: "prisma.io",
+      },
+    },
+  });
+
+  if (typeof callback == "function") {
+    callback({
+      code: 200,
+      message: options.message,
+      data: groupUsers,
+    });
+  }
+}
+
 // findMany
 
 methodList.forEach((item) => {
