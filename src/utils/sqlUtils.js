@@ -39,8 +39,6 @@ function GetJoiner(item) {
   var field = item["field"] != null ? item["field"] : "";
   var value = item["value"] != null ? item["value"] : "";
   var matchType = item["type"] != null ? item["type"] : "等于";
-
-  
   if (value && value.toString().length > 0) {
     switch (matchType) {
       case "内部匹配":
