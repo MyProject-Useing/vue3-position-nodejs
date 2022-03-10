@@ -11,7 +11,7 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 10/03/2022 11:14:13
+ Date: 10/03/2022 16:44:46
 */
 
 SET NAMES utf8mb4;
@@ -250,15 +250,14 @@ INSERT INTO `tb_menu` VALUES (10, '2021-12-31 06:17:19', 'meetlist', 'meetlist',
 INSERT INTO `tb_menu` VALUES (11, '2021-12-31 06:23:12', 'meetcreate', 'meetcreate', '', NULL, '创建资料', NULL, 1, 1, NULL, 0, NULL, 'plus', 9, NULL, 30, 'vab/meet/components/create.vue');
 INSERT INTO `tb_menu` VALUES (12, '2021-12-31 06:24:12', 'meetedit', 'meetedit', '', NULL, '资料编辑', NULL, 1, 1, NULL, 0, NULL, 'file-signature', 9, NULL, 40, 'vab/meet/components/edit.vue');
 INSERT INTO `tb_menu` VALUES (13, '2021-12-31 06:24:49', 'meetdetils', 'meetdetils', '', NULL, '资料详情', NULL, 1, 1, NULL, 0, NULL, 'money-check', 9, NULL, 50, 'vab/meet/components/details.vue');
-INSERT INTO `tb_menu` VALUES (14, '2021-12-31 06:26:21', '/personalCenter', 'personalCenter', 'Layout', '', '个人中心', NULL, 1, 1, NULL, 0, NULL, 'street-view', NULL, NULL, 80, '');
-INSERT INTO `tb_menu` VALUES (15, '2021-12-31 06:28:50', 'personalInfo', 'personalInfo', '', NULL, '基础信息', NULL, 1, 1, NULL, 0, NULL, 'street-view', 14, NULL, 10, 'personalCenter/index.vue');
+INSERT INTO `tb_menu` VALUES (14, '2021-12-31 06:26:21', '/personalInfo', 'personalInfo', 'Layout', '', '个人中心', NULL, 1, 1, NULL, 0, NULL, 'street-view', NULL, NULL, 80, 'personalCenter/index.vue');
 INSERT INTO `tb_menu` VALUES (16, '2021-12-31 06:30:50', '/material', 'material', 'Layout', NULL, '资料', NULL, 0, 1, NULL, 0, NULL, 'box-open', NULL, NULL, 35, '');
 INSERT INTO `tb_menu` VALUES (17, '2021-12-31 06:31:50', 'studylist', 'studylist', '', NULL, '学习资料', NULL, 0, 1, NULL, 0, NULL, 'box-open', 16, NULL, 2, 'vab/study/index.vue');
 INSERT INTO `tb_menu` VALUES (18, '2021-12-31 06:32:20', 'audiolist', 'audiolist', '', NULL, '音频资料', NULL, 0, 1, NULL, 0, NULL, 'box-open', 16, NULL, 10, 'vab/audio/index.vue');
 INSERT INTO `tb_menu` VALUES (19, '2022-01-07 09:15:40', '/log', '/log', 'Layout', NULL, '日志审计', NULL, 0, 1, NULL, 0, NULL, 'box-open', NULL, NULL, 40, '');
 INSERT INTO `tb_menu` VALUES (20, '2022-01-07 09:16:24', 'operationLog', 'operationLog', '', NULL, '操作日志', NULL, 0, 1, NULL, 0, NULL, 'box-open', 19, NULL, 20, 'vab/log/operationLog');
 INSERT INTO `tb_menu` VALUES (21, '2022-01-07 09:46:22', 'loginLog', 'loginLog', '', NULL, '登录日志', NULL, 0, 1, NULL, 0, NULL, 'box-open', 19, NULL, 10, 'vab/log/loginLog');
-INSERT INTO `tb_menu` VALUES (23, '2022-02-21 12:10:35', 'meetcart', 'meetcart', '', NULL, '首页', NULL, 0, 1, NULL, 0, NULL, 'box', 9, NULL, 10, 'vab/meet/cart.vue');
+INSERT INTO `tb_menu` VALUES (23, '2022-02-21 12:10:35', 'meetcart', 'meetcart', '', NULL, '首页', NULL, 0, 1, NULL, 0, NULL, 'home', 9, NULL, 10, 'vab/meet/cart.vue');
 
 -- ----------------------------
 -- Table structure for tb_menu_role
@@ -288,7 +287,6 @@ INSERT INTO `tb_menu_role` VALUES (61, '2021-12-31 08:08:03', 4, 11);
 INSERT INTO `tb_menu_role` VALUES (62, '2021-12-31 08:08:03', 4, 12);
 INSERT INTO `tb_menu_role` VALUES (63, '2021-12-31 08:08:03', 4, 13);
 INSERT INTO `tb_menu_role` VALUES (64, '2021-12-31 08:08:03', 4, 14);
-INSERT INTO `tb_menu_role` VALUES (65, '2021-12-31 08:08:03', 4, 15);
 INSERT INTO `tb_menu_role` VALUES (163, '2022-03-09 09:34:56', 2, 9);
 INSERT INTO `tb_menu_role` VALUES (164, '2022-03-09 09:34:56', 2, 23);
 INSERT INTO `tb_menu_role` VALUES (165, '2022-03-09 09:34:56', 2, 10);
@@ -306,7 +304,6 @@ INSERT INTO `tb_menu_role` VALUES (176, '2022-03-09 09:34:56', 2, 6);
 INSERT INTO `tb_menu_role` VALUES (177, '2022-03-09 09:34:56', 2, 7);
 INSERT INTO `tb_menu_role` VALUES (178, '2022-03-09 09:34:56', 2, 8);
 INSERT INTO `tb_menu_role` VALUES (179, '2022-03-09 09:34:56', 2, 14);
-INSERT INTO `tb_menu_role` VALUES (180, '2022-03-09 09:34:56', 2, 15);
 
 -- ----------------------------
 -- Table structure for tb_operation_log
@@ -847,6 +844,80 @@ INSERT INTO `tb_operation_log` VALUES (519, '2022-03-10 03:03:30', 1, '访问菜
 INSERT INTO `tb_operation_log` VALUES (520, '2022-03-10 03:12:45', 1, '界面不存在', '404', '界面查询', NULL);
 INSERT INTO `tb_operation_log` VALUES (521, '2022-03-10 03:12:48', 1, '访问首页', '首页', '界面查询', NULL);
 INSERT INTO `tb_operation_log` VALUES (522, '2022-03-10 03:12:49', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (523, '2022-03-10 03:17:05', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (524, '2022-03-10 03:17:07', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (525, '2022-03-10 07:54:19', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (526, '2022-03-10 07:59:06', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (527, '2022-03-10 07:59:27', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (528, '2022-03-10 07:59:29', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (529, '2022-03-10 07:59:31', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (530, '2022-03-10 08:02:01', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (531, '2022-03-10 08:07:12', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (532, '2022-03-10 08:13:10', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (533, '2022-03-10 08:13:45', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (534, '2022-03-10 08:13:57', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (535, '2022-03-10 08:14:00', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (536, '2022-03-10 08:16:00', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (537, '2022-03-10 08:16:06', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (538, '2022-03-10 08:16:10', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (539, '2022-03-10 08:16:11', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (540, '2022-03-10 08:16:43', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (541, '2022-03-10 08:16:48', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (542, '2022-03-10 08:16:49', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (543, '2022-03-10 08:16:51', 1, '访问学习资料', '学习资料', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (544, '2022-03-10 08:16:53', 1, '访问音频资料', '音频资料', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (545, '2022-03-10 08:16:54', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (546, '2022-03-10 08:16:59', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (547, '2022-03-10 08:17:58', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (548, '2022-03-10 08:18:00', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (549, '2022-03-10 08:18:02', 1, '访问个人中心', '个人中心', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (550, '2022-03-10 08:18:05', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (551, '2022-03-10 08:19:33', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (552, '2022-03-10 08:20:08', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (553, '2022-03-10 08:20:16', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (554, '2022-03-10 08:20:18', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (555, '2022-03-10 08:20:26', 1, '访问菜单管理', '菜单管理', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (556, '2022-03-10 08:20:48', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (557, '2022-03-10 08:20:50', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (558, '2022-03-10 08:20:52', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (559, '2022-03-10 08:20:55', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (560, '2022-03-10 08:21:07', 1, '访问系统概要', '系统概要', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (561, '2022-03-10 08:21:14', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (562, '2022-03-10 08:21:21', 1, '访问系统概要', '系统概要', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (563, '2022-03-10 08:21:26', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (564, '2022-03-10 08:21:40', 1, '访问创建资料', '创建资料', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (565, '2022-03-10 08:21:42', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (566, '2022-03-10 08:21:46', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (567, '2022-03-10 08:21:48', 1, '访问系统概要', '系统概要', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (568, '2022-03-10 08:21:50', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (569, '2022-03-10 08:21:51', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (570, '2022-03-10 08:21:53', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (571, '2022-03-10 08:22:08', 1, '界面不存在', '404', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (572, '2022-03-10 08:22:10', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (573, '2022-03-10 08:22:41', 1, '访问个人中心', '个人中心', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (574, '2022-03-10 08:22:43', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (575, '2022-03-10 08:22:45', 1, '访问个人中心', '个人中心', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (576, '2022-03-10 08:22:48', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (577, '2022-03-10 08:22:52', 1, '访问资料列表', '资料列表', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (578, '2022-03-10 08:22:55', 1, '访问系统概要', '系统概要', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (579, '2022-03-10 08:22:58', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (580, '2022-03-10 08:23:04', 1, '访问资料列表', '资料列表', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (581, '2022-03-10 08:23:10', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (582, '2022-03-10 08:23:11', 1, '访问资料列表', '资料列表', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (583, '2022-03-10 08:23:15', 1, '访问创建资料', '创建资料', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (584, '2022-03-10 08:23:17', 1, '访问系统概要', '系统概要', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (585, '2022-03-10 08:23:20', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (586, '2022-03-10 08:23:21', 1, '访问资料列表', '资料列表', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (587, '2022-03-10 08:30:57', 1, '访问资料编辑', '资料编辑', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (588, '2022-03-10 08:31:02', 1, '访问系统概要', '系统概要', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (589, '2022-03-10 08:31:06', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (590, '2022-03-10 08:31:08', 1, '访问个人中心', '个人中心', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (591, '2022-03-10 08:31:10', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (592, '2022-03-10 08:31:12', 1, '访问资料列表', '资料列表', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (593, '2022-03-10 08:43:42', 1, '访问系统概要', '系统概要', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (594, '2022-03-10 08:43:43', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (595, '2022-03-10 08:44:13', 1, '访问资料列表', '资料列表', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (596, '2022-03-10 08:44:18', 1, '访问首页', '首页', '界面查询', NULL);
 
 -- ----------------------------
 -- Table structure for tb_role
