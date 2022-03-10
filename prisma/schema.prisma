@@ -87,6 +87,7 @@ model tb_menu {
   pid          Int?           @db.UnsignedInt
   createid     Int?           @db.UnsignedInt
   sort         Int?           @default(0) @db.UnsignedInt
+  filepath     String?        @db.VarChar(255)
   tb_menu_role tb_menu_role[]
 }
 
@@ -181,6 +182,7 @@ model tb_operation_log {
   details    String?   @db.VarChar(255)
   menuname   String?   @db.VarChar(255)
   opertype   String?   @db.VarChar(255)
+  account    String?   @db.VarChar(18)
   tb_user    tb_user?  @relation(fields: [createid], references: [id], onUpdate: SetNull, map: "tb_operation_log_ibfk_1")
 
   @@index([createid], map: "createid")
