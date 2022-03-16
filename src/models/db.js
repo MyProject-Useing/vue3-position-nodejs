@@ -26,7 +26,6 @@ module.exports = prisma;
 // pm2 stop all 停止所有进程
 // pm2 restart all 重启所有进程
 // pm2 delete all 杀死全部进程
-
 // npm run lint --fix自动格式化
 
 // npx prisma db pull 更新表结构
