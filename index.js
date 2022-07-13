@@ -3,6 +3,8 @@ const multer = require("multer");
 // 引入body-parser中间件，用来处理post请求体body中的数据
 const bodyParser = require("body-parser");
 
+const http = require("http");
+
 const path = require("path");
 const express = require("express");
 const app = express();
@@ -38,7 +40,9 @@ app.use(multer({ dest: "./public/temp/" }).any());
 
 require("./src/routes/index.js")(app);
 
-// set port, listen for requests
-app.listen(port, function () {
-  console.log("Server is running http://localhost:" + port);
+// 设置服务启动端口
+app.set("port", port || 3010);
+
+http.createServer(app).listen(app.get("port"), function () {
+  console.log("服务器已经启动: http://localhost:" + app.get("port"));
 });
