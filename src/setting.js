@@ -6,7 +6,7 @@ module.exports = {
      * @type {int}
      * @description 端口地址
      */
-  port: 3000,
+  port: 3010,
 
   /**
    * @type {int}

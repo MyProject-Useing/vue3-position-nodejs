@@ -11,3 +11,6 @@ npm run build
 
 #数据库
 mysql + prisma
+
+项目打包-生成exe
+pkg -t win index.js
