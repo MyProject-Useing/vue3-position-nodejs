@@ -11,7 +11,7 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 10/03/2022 16:44:46
+ Date: 22/11/2022 17:21:50
 */
 
 SET NAMES utf8mb4;
@@ -169,7 +169,7 @@ CREATE TABLE `tb_login_log`  (
   `loginip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'IP地址',
   `loginstate` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '登录状态',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tb_login_log
@@ -193,6 +193,7 @@ INSERT INTO `tb_login_log` VALUES (16, 'admin', '2022-03-04 07:25:11', '127.0.0.
 INSERT INTO `tb_login_log` VALUES (17, 'admin', '2022-03-07 06:47:09', '127.0.0.1', '登录成功');
 INSERT INTO `tb_login_log` VALUES (18, 'admin', '2022-03-07 06:56:57', '127.0.0.1', '登录成功');
 INSERT INTO `tb_login_log` VALUES (19, 'admin', '2022-03-09 09:45:31', '127.0.0.1', '登录成功');
+INSERT INTO `tb_login_log` VALUES (20, 'admin', '2022-11-22 09:21:30', '127.0.0.1', '登录成功');
 
 -- ----------------------------
 -- Table structure for tb_means
@@ -320,7 +321,7 @@ CREATE TABLE `tb_operation_log`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `createid`(`createid`) USING BTREE,
   CONSTRAINT `tb_operation_log_ibfk_1` FOREIGN KEY (`createid`) REFERENCES `tb_user` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE = InnoDB AUTO_INCREMENT = 498 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 597 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tb_operation_log
@@ -918,6 +919,7 @@ INSERT INTO `tb_operation_log` VALUES (593, '2022-03-10 08:43:42', 1, '访问系
 INSERT INTO `tb_operation_log` VALUES (594, '2022-03-10 08:43:43', 1, '访问首页', '首页', '界面查询', NULL);
 INSERT INTO `tb_operation_log` VALUES (595, '2022-03-10 08:44:13', 1, '访问资料列表', '资料列表', '界面查询', NULL);
 INSERT INTO `tb_operation_log` VALUES (596, '2022-03-10 08:44:18', 1, '访问首页', '首页', '界面查询', NULL);
+INSERT INTO `tb_operation_log` VALUES (597, '2022-11-22 09:21:30', 1, '访问首页', '首页', '界面查询', NULL);
 
 -- ----------------------------
 -- Table structure for tb_role
@@ -995,8 +997,8 @@ CREATE TABLE `tb_user`  (
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
-INSERT INTO `tb_user` VALUES (1, '2021-12-20 14:59:16', '/image/userheads/labixiaoxin.png', '超级管理员', '79010e2bba4fcfb1b2bc150b8f17e030', NULL, '建议唯一账户，拥有系统最高权限。', 1, 0, 'admin', '2', NULL);
-INSERT INTO `tb_user` VALUES (2, '2021-12-31 08:21:40', NULL, '2222', '79010e2bba4fcfb1b2bc150b8f17e030', NULL, NULL, NULL, 0, 'danhua', '2,4', NULL);
+INSERT INTO `tb_user` VALUES (1, '2021-12-20 14:59:16', '/image/userheads/labixiaoxin.png', '超级管理员', '96e79218965eb72c92a549dd5a330112', NULL, '建议唯一账户，拥有系统最高权限。', 1, 0, 'admin', '2', NULL);
+INSERT INTO `tb_user` VALUES (2, '2021-12-31 08:21:40', NULL, '2222', '96e79218965eb72c92a549dd5a330112', NULL, NULL, NULL, 0, 'danhua', '2,4', NULL);
 INSERT INTO `tb_user` VALUES (3, '2022-01-01 13:47:12', NULL, 'danhua', '96e79218965eb72c92a549dd5a330112', NULL, NULL, NULL, 0, 'danhua2', NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
