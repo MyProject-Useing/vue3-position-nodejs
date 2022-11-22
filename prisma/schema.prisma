@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:123456@111.229.92.181:3306/manage_node"
+  url      = "mysql://root:123456@localhost:3306/manage_node"
 }
 
 model tb_common_config {
@@ -50,7 +50,7 @@ model tb_user {
 }
 
 model tb_language {
-  id         Int          @default(autoincrement()) @db.UnsignedInt
+  id         Int          @default(autoincrement()) @db.UnsignedInt @unique
   createtime DateTime?    @default(now()) @db.DateTime(0)
   name       String       @db.VarChar(255)
   createid   Int?         @db.UnsignedInt
